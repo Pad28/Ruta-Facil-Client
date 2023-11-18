@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { styles } from './src/theme/appTheme';
+import { View } from 'react-native';
 import { ScreenLogin } from './src/screens/ScreenLogin';
 
 export default function App() {
