@@ -5,9 +5,10 @@ interface Props {
     texto: string;
     width?: number;
     color?: string;
+    action?: () => void;
 }
 
-export const Boton = ( { texto, width = 250, color = colors.secundario }: Props ) => {
+export const Boton = ( { texto, width = 250, color = colors.secundario, action }: Props ) => {
     return (
         <TouchableOpacity 
             style={{ 

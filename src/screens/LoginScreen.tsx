@@ -1,15 +1,14 @@
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { HeaderApp } from '../components/HeaderApp';
 import { Boton } from '../components/Boton';
+import { styles } from '../theme/appTheme';
 
 export const ScreenLogin = () => {
 
-    const { height } = Dimensions.get('window');
-
     return (
-        <View style={ localStyles.container } >
+        <View style={ styles.container } >
             <HeaderApp height={80} />
-            <View style={ localStyles.body } >
+            <View style={{ ...styles.body, paddingTop: 30 }} >
                 
                 <Image 
                     source={ require('../../assets/LogoRutaFacil.png') } 
@@ -32,16 +31,6 @@ export const ScreenLogin = () => {
 }
 
 const localStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    body: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: 30,
-        alignContent: 'space-between'
-    },
     logo: {
         height: 250,
         width: 250,

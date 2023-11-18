@@ -9,7 +9,15 @@ const colors = {
 const styles = StyleSheet.create({
     tiulo: {
         fontSize: 20
-    }
+    },
+    container: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+    body: {
+        flex: 1,
+        alignItems: 'center'
+    },
 });
 
 export {
