@@ -2,10 +2,12 @@ import { CardStyleInterpolators, createStackNavigator } from "@react-navigation/
 import { LoginScreen } from "../screens/LoginScreen";
 import { RegistroScreen } from "../screens/RegistroScreen";
 import { colors } from "../theme/appTheme";
+import { IinicioSecionScreen } from "../screens/IinicioSecionScreen";
 
 export type StackLoginParams = {
     LoginScreen: undefined;
     RegistroScreen: undefined;
+    InicioSecionScreen: undefined;
 }
 
 const Stack = createStackNavigator<StackLoginParams>();
@@ -23,13 +25,17 @@ export const LoginStackNavigation = () => {
             }}
         >
             <Stack.Screen 
-                options={{ headerShown: false }} 
                 name="LoginScreen" 
-                component={LoginScreen} 
+                component={LoginScreen}
+                options={{ headerShown: false }} 
             />
             <Stack.Screen
                 name="RegistroScreen"  
                 component={RegistroScreen} 
+            />
+            <Stack.Screen 
+                name="InicioSecionScreen"
+                component={IinicioSecionScreen}
             />
 
         </Stack.Navigator>

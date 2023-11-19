@@ -1,5 +1,5 @@
 import { Image, StyleSheet, View } from 'react-native';
-import { HeaderApp } from '../components/HeaderApp';
+import { HeaderText } from '../components/HeaderText';
 import { Boton } from '../components/Boton';
 import { styles } from '../theme/appTheme';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -11,7 +11,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container } >
-            <HeaderApp height={100} />
+            <HeaderText height={100} />
             <View style={{ ...styles.body, paddingTop: 30 }} >
                 
                 <Image 
@@ -20,7 +20,10 @@ export const LoginScreen = ({ navigation }: Props) => {
                 />
                 
                 <View style={{ marginBottom: 70, marginTop: 30 }} >
-                    <Boton texto='Iniciar sesión' />
+                    <Boton 
+                        texto='Iniciar sesión' 
+                        action={() => navigation.navigate('InicioSecionScreen')}
+                    />
                 </View>
                 <View style={{ marginBottom: 70 }} >
                     <Boton 
@@ -31,7 +34,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 
             </View>
             <View style={{ top: 0 }} >
-                {/* <HeaderApp height={130} /> */}
+                {/* <HeaderText height={130} /> */}
             </View>
         </View>
     );

@@ -8,7 +8,7 @@ interface Props {
     texto?: string;
 }
 
-export const HeaderApp = ( { height, texto = '' }: Props ) => {
+export const HeaderText = ( { height, texto = '' }: Props ) => {
     const { width } = Dimensions.get('window');
 
     return (
