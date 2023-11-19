@@ -8,7 +8,8 @@ const colors = {
 
 const styles = StyleSheet.create({
     tiulo: {
-        fontSize: 20
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     container: {
         flex: 1,

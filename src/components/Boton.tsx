@@ -16,6 +16,7 @@ export const Boton = ( { texto, width = 250, color = colors.secundario, action }
                 backgroundColor: color,
                 width,
             }} 
+            onPress={action}
         >
             <Text style={ localStyles.botonText } > { texto } </Text>
         </TouchableOpacity>   

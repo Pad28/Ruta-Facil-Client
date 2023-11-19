@@ -2,12 +2,16 @@ import { Image, StyleSheet, View } from 'react-native';
 import { HeaderApp } from '../components/HeaderApp';
 import { Boton } from '../components/Boton';
 import { styles } from '../theme/appTheme';
+import { StackScreenProps } from '@react-navigation/stack';
+import { StackLoginParams } from '../Navigaton/LoginStackNavigation';
 
-export const ScreenLogin = () => {
+interface Props extends StackScreenProps<StackLoginParams, 'LoginScreen'> {};
+
+export const LoginScreen = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container } >
-            <HeaderApp height={80} />
+            <HeaderApp height={100} />
             <View style={{ ...styles.body, paddingTop: 30 }} >
                 
                 <Image 
@@ -15,17 +19,20 @@ export const ScreenLogin = () => {
                     style={ localStyles.logo }
                 />
                 
-                <View style={{ marginBottom: 50 }} >
+                <View style={{ marginBottom: 70, marginTop: 30 }} >
                     <Boton texto='Iniciar sesión' />
                 </View>
                 <View style={{ marginBottom: 70 }} >
-                    <Boton texto='Crear cuenta' />
+                    <Boton 
+                        texto='Crear cuenta'
+                        action={() => navigation.navigate('RegistroScreen')} 
+                    />
                 </View>
 
             </View>
             <View style={{ top: 0 }} >
-                    <HeaderApp height={130} />
-                </View>
+                {/* <HeaderApp height={130} /> */}
+            </View>
         </View>
     );
 }

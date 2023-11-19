@@ -6,7 +6,7 @@ interface Props {
     width?: number;
     password?: boolean;
     iconName?: string;
-    action?: () => void;
+    action?: (texto: string) => void;
 }
 
 export const InputApp = ( { texto, password = false, iconName, width = 300, action }: Props ) => {
@@ -27,6 +27,7 @@ export const InputApp = ( { texto, password = false, iconName, width = 300, acti
                 style={{ ...localStyles.input, width }}
                 placeholder={ texto }
                 secureTextEntry={password}
+                onChangeText={action}
             />
         </View>
     );

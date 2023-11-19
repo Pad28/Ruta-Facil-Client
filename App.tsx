@@ -1,13 +1,14 @@
-import { View } from 'react-native';
-import { ScreenLogin } from './src/screens/LoginScreen';
-import { RegistroScreen } from './src/screens/RegistroScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import { LoginStackNavigation } from './src/Navigaton/LoginStackNavigation';
 
 export default function App() {
   return (
-    <View style={{ flex: 1 }} >
-      {/* <ScreenLogin /> */}
-      <RegistroScreen />
-    </View>
+    <NavigationContainer>
+      {/* <LoginScreen /> */}
+      {/* <RegistroScreen /> */}
+      <LoginStackNavigation />
+    </NavigationContainer>
   );
 }
 
