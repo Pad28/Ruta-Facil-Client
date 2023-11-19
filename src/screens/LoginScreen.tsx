@@ -3,7 +3,7 @@ import { HeaderApp } from '../components/HeaderApp';
 import { Boton } from '../components/Boton';
 import { styles } from '../theme/appTheme';
 import { StackScreenProps } from '@react-navigation/stack';
-import { StackLoginParams } from '../Navigaton/LoginStackNavigation';
+import { StackLoginParams } from '../navigaton/LoginStackNavigation';
 
 interface Props extends StackScreenProps<StackLoginParams, 'LoginScreen'> {};
 

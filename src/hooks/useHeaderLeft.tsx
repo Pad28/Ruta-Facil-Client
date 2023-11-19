@@ -1,5 +1,5 @@
 import { StackNavigationProp } from "@react-navigation/stack";
-import { StackLoginParams } from "../Navigaton/LoginStackNavigation";
+import { StackLoginParams } from "../navigaton/LoginStackNavigation";
 import { useEffect } from "react";
 import { HeaderLeftStack } from "../components/HeaderLeftStack";
 
