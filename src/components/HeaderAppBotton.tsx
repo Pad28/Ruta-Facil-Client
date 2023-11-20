@@ -24,7 +24,7 @@ export const HeaderAppBotton = ({ title, navigation, style }: Props) => {
                 style={ localStyles.boton }
                 onPress={() => navigation.pop()}
             >
-                <Ionicons name='chevron-back-outline' size={38}  color={'black'} />
+                <Ionicons name='chevron-back-outline' size={32}  color={'black'} />
                 <Text style={ localStyles.text } >
                     { title }
                 </Text>
@@ -39,14 +39,15 @@ const localStyles = StyleSheet.create({
         height: 10
     },
     boton: {
-        marginTop: 30,
+        marginTop: 10,
         marginLeft: 10,
         flexDirection: 'row',
         alignItems: 'center',
     },
     text: {
-        fontSize: 30,
+        fontSize: 26,
         fontWeight: 'bold',
-        marginBottom: 5
+        marginBottom: 5,
+        marginLeft: 5,
     }
 });

@@ -15,11 +15,12 @@ export const InputApp = ( { texto, password = false, iconName, width = 300, acti
             style={{ 
                 marginTop: 30, 
                 flexDirection: 'row', 
-                justifyContent: 'center' 
+                justifyContent: 'center',
+                alignItems: 'center'
             }} 
         >
             <Ionicons 
-                style={{ top: 18 }} 
+                style={{ top: 4 }} 
                 name={iconName} 
                 size={34}
             />
@@ -29,6 +30,7 @@ export const InputApp = ( { texto, password = false, iconName, width = 300, acti
                 secureTextEntry={password}
                 onChangeText={action}
             />
+
         </View>
     );
 }

@@ -3,11 +3,13 @@ import { LoginScreen } from "../screens/LoginScreen";
 import { RegistroScreen } from "../screens/RegistroScreen";
 import { colors } from "../theme/appTheme";
 import { IinicioSecionScreen } from "../screens/IinicioSecionScreen";
+import { DrawerMenu } from "./DrawerMenu";
 
 export type StackLoginParams = {
     LoginScreen: undefined;
     RegistroScreen: undefined;
     InicioSecionScreen: undefined;
+    DrawerHome: undefined;
 }
 
 const Stack = createStackNavigator<StackLoginParams>();
@@ -36,6 +38,12 @@ export const LoginStackNavigation = () => {
             <Stack.Screen 
                 name="InicioSecionScreen"
                 component={IinicioSecionScreen}
+                options={{ headerShown: false }} 
+            />
+            <Stack.Screen 
+                name="DrawerHome"
+                component={DrawerMenu}
+                options={{ headerShown: false }} 
             />
 
         </Stack.Navigator>
