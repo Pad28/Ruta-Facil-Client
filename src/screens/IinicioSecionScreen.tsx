@@ -1,20 +1,20 @@
 import { Button, Text, View } from "react-native";
 import { styles } from "../theme/appTheme";
 import { InputApp } from "../components/InputApp";
-import { useContenedorDeslizable } from "../hooks/useContenedorDeslizable";
 import { StackScreenProps } from "@react-navigation/stack";
 import { StackLoginParams } from "../navigaton/LoginStackNavigation";
-import { HeaderAppBotton } from "../components/HeaderAppBotton";
+import { useHeaderLeftStack } from "../hooks/useHeaderLeftStack";
+import { useContext } from "react";
+import { AuthContext } from "../context/auhtContext/AuthContext";
 
 interface Props extends StackScreenProps<StackLoginParams, 'InicioSecionScreen'> {};
 
 export const IinicioSecionScreen = ({ navigation }: Props) => {
-
-    const { AnimatedContainer, deploy, disguise } = useContenedorDeslizable('translateY', 1000);
+    const { logIn } = useContext(AuthContext);
+    useHeaderLeftStack({ navigation, title: 'Inico de Seción' });
 
     return (
         <View style={{ marginTop: 20, alignItems: 'center', flex: 1 }} >
-            <HeaderAppBotton title="Inicio" navigation={navigation} style={{ height: 58 }} />
             <Text style={styles.tiulo}>Pantalla de inicio de sesion</Text>
             <InputApp texto="correo/telefono" />
             <InputApp texto="password" />
@@ -22,10 +22,7 @@ export const IinicioSecionScreen = ({ navigation }: Props) => {
                 <Button 
                     title="Aceptar" 
                     onPress={() => {
-                        navigation.reset({
-                            index: 0,
-                            routes: [ { name: 'DrawerHome' } ]
-                        })
+                        logIn({ token:'asas', user: { nombre: 'test', apellidos: 'test', correo: 'test', estado: true, foto: '123', id: 'qwe', password: '123', rol: 'USER', telefono: '123' } })       
                     }} 
                 />
             </View>

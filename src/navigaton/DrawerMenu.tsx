@@ -3,7 +3,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { HomeTabNavigator } from './HomeTabNavigator';
 import { colors } from '../theme/appTheme';
 import { HeaderDrawer } from '../components/HeaderDrawer';
-import { LoginStackNavigation } from './LoginStackNavigation';
 import { DrawerMenuIntems } from '../components/DrawerMenuIntems';
 
 const Drawer = createDrawerNavigator();
@@ -21,17 +20,9 @@ export const DrawerMenu = () => {
                 },
                 title: '',
             }}
-            drawerContent={(props) => <DrawerMenuIntems {...props} />}
-        >
+            drawerContent={(props) => <DrawerMenuIntems drawerProps={props} userName='User' />}
+        >   
             <Drawer.Screen name='HomeTabNavigator' component={HomeTabNavigator} />
-            <Drawer.Screen  
-                options={{ 
-                    headerShown: false,
-                    swipeEnabled: false 
-                }} 
-                name='LoginStackNavigation' 
-                component={LoginStackNavigation} 
-            />
         </Drawer.Navigator>
     );
 }

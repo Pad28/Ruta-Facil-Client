@@ -4,6 +4,8 @@ const colors = {
     primario: '#67C8D1', // azulito
     secundario: '#FBB90F', // amarillo
     terciario: '#4FA264', // verde
+
+    fondo: '#EFEFEF'
 }
 
 const styles = StyleSheet.create({
@@ -13,7 +15,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: colors.fondo
     },
     body: {
         flex: 1,

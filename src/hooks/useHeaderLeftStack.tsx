@@ -1,8 +1,9 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackLoginParams } from "../navigaton/LoginStackNavigation";
 import { useEffect } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { StatusBar, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { colors } from "../theme/appTheme";
 
 interface Props {
     navigation: StackNavigationProp<StackLoginParams, any, any>;
@@ -21,6 +22,7 @@ export const useHeaderLeftStack = ( { navigation, title }: Props  ) => {
                 }}
                 onPress={action}
                 >
+                <StatusBar backgroundColor={colors.primario} />
                 <Ionicons name='chevron-back' size={32}  />
                 <Text style={{ fontSize: 24, fontWeight: 'bold', marginLeft: 5 }} >
                     { title }

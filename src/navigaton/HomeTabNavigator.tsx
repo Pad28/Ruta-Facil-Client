@@ -5,25 +5,26 @@ import { RutasScreen } from '../screens/RutasScreen';
 import { SugerenciasScreen } from '../screens/SugerenciasScreen';
 import { colors } from '../theme/appTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 export const HomeTabNavigator = () => {
     return (
         <Tab.Navigator
-            sceneContainerStyle={{
-                backgroundColor: 'white'
-            }}
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: colors.primario,
-                    elevation: 0,
-                    height: 106,
+                    // elevation: 0,
+                    height: 90,
+                    // width: 360 ,
+                    // marginBottom: 10,
+                    // alignSelf: 'center',
+                    // borderRadius: 25
                 },
                 tabBarLabelStyle: {
-                    fontSize: 20,
+                    fontSize: 18,
                     marginBottom: 10
                 },
                 tabBarActiveTintColor: 'white',
@@ -47,16 +48,8 @@ export const HomeTabNavigator = () => {
                     }
 
                     return (
-                        <View style={{
-                            alignItems: 'center',
-                            justifyContent: 'center', 
-                            backgroundColor: colors.terciario, 
-                            borderRadius: 26,
-                            height: 60,
-                            width: 60 
-                            }} 
-                        >
-                            <Ionicons name={iconName} color={color} size={40} />
+                        <View style={localStyles.iconContainer} >
+                            <Ionicons name={iconName} color={color} size={34} />
                         </View>
                     )
                 } 
@@ -69,3 +62,15 @@ export const HomeTabNavigator = () => {
         </Tab.Navigator>
     );
 }
+
+const localStyles = StyleSheet.create({
+    iconContainer: {
+        marginTop: 10,
+        width: 52,
+        height: 52,
+        backgroundColor: colors.terciario,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 30
+    }
+});

@@ -1,10 +1,19 @@
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import React from 'react'
+import React, { useContext } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../theme/appTheme';
+import { AuthContext } from '../context/auhtContext/AuthContext';
 
-export const DrawerMenuIntems = ({ navigation }: DrawerContentComponentProps) => {
+interface Props {
+    drawerProps: DrawerContentComponentProps;
+    userName: string; 
+}
+
+export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
+    const { navigation } = drawerProps;
+    const { logOut } = useContext(AuthContext);
+
     return (
         <DrawerContentScrollView>
             <View style={localStyles.imageContainer} >
@@ -12,12 +21,12 @@ export const DrawerMenuIntems = ({ navigation }: DrawerContentComponentProps) =>
                     source={ require('../../assets/avatar.jpeg') }
                     style={ localStyles.image }
                 />
-                <Text style={ localStyles.nameText } >AAAAAAA</Text>
+                <Text style={ localStyles.nameText } > {userName} </Text>
             </View>
             <DrawerItem 
                 icon={() => (
                     <View style={ localStyles.iconContainer } >
-                        <Ionicons name='notifications' size={40}/>
+                        <Ionicons name='notifications' size={40} color={colors.fondo} />
                     </View>
                 )}
                 label={'Notificaciones'}
@@ -28,7 +37,7 @@ export const DrawerMenuIntems = ({ navigation }: DrawerContentComponentProps) =>
             <DrawerItem 
                 icon={() => (
                     <View style={ localStyles.iconContainer } >
-                        <Ionicons name='cog' size={40}/>
+                        <Ionicons name='cog' size={40} color={colors.fondo} /> 
                     </View>
                 )}
                 label={'Configuración'}
@@ -40,12 +49,12 @@ export const DrawerMenuIntems = ({ navigation }: DrawerContentComponentProps) =>
             <DrawerItem 
                 icon={() => (
                     <View style={ localStyles.iconContainer } >
-                        <Ionicons name='log-out' size={40}/>
+                        <Ionicons name='log-out' size={40} color={colors.fondo} />
                     </View>
                 )}
                 label={'Cerrar sesión'}
                 labelStyle={ localStyles.menuTexto }
-                onPress={() => {}}
+                onPress={logOut}
             />
 
         </DrawerContentScrollView>
@@ -72,7 +81,8 @@ const localStyles = StyleSheet.create({
     menuTexto: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: -15
+        marginLeft: -15,
+        color: colors.fondo
     },
     iconContainer: {
         justifyContent: 'center',

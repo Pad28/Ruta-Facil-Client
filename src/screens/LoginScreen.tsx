@@ -33,9 +33,6 @@ export const LoginScreen = ({ navigation }: Props) => {
                 </View>
 
             </View>
-            <View style={{ top: 0 }} >
-                {/* <HeaderText height={130} /> */}
-            </View>
         </View>
     );
 }
