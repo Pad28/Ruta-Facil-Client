@@ -5,7 +5,7 @@ import { RutasScreen } from '../screens/RutasScreen';
 import { SugerenciasScreen } from '../screens/SugerenciasScreen';
 import { colors } from '../theme/appTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,8 +18,8 @@ export const HomeTabNavigator = () => {
                     backgroundColor: colors.primario,
                     // elevation: 0,
                     height: 90,
-                    width: 360 ,
-                    marginBottom: 10,
+                    width: 380 ,
+                    marginBottom: 16,
                     alignSelf: 'center',
                     borderRadius: 25
                 },

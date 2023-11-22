@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     },
     containerTabNav: {
         alignSelf: 'center',
-        marginTop: 14,
-        height: heightWindow - 190,
+        marginTop: 8,
+        height: heightWindow - 220,
         width: widthWindow - 20,
         borderRadius: 10,
         elevation: 2,
