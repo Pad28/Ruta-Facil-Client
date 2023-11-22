@@ -35,7 +35,11 @@ export const RegistroScreen = ( { navigation }: Props ) => {
         confirmPassword: ''
     });
 
-    const { peticion, isLoading, setIsLoading } = usePeticionPost<formularioRegistroType, postNewUserType>('/api/usuarios', form);
+    const { 
+        peticion, 
+        isLoading, 
+        setIsLoading 
+    } = usePeticionPost<formularioRegistroType, postNewUserType>('/api/usuarios', form);
 
     return (
         <KeyboardAvoidingView
@@ -100,7 +104,6 @@ export const RegistroScreen = ( { navigation }: Props ) => {
                                                 telefono: form.telefono  
                                             })
                                             .then(res => {
-                                                Alert.alert('Bienvenido!', 'Ahora puedes iniciar seción en RutaFacil')
                                                 navigation.replace('InicioSecionScreen');
                                             })
                                             .catch(err => {

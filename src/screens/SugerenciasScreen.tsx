@@ -1,9 +1,10 @@
 import React from 'react'
 import { Text, View } from 'react-native';
+import { styles } from '../theme/appTheme';
 
 export const SugerenciasScreen = () => {
     return (
-        <View style={{ marginTop: 50 }} >
+        <View style={[ styles.containerTabNav, { backgroundColor: 'blue' } ]} >
             <Text> SugerenciasScreen </Text>
         </View>
     );

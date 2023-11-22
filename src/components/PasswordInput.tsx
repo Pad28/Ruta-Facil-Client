@@ -8,7 +8,7 @@ interface Props {
     action?: (texto: string) => void;
 }
 
-export const PasswordInput = ( { texto, width = 266, action }: Props ) => {
+export const PasswordInput = ( { texto, width = 300, action }: Props ) => {
 
     const [ lock, setLock ] = useState(true);
     const [ icon, setIcon ] = useState('eye');
@@ -34,15 +34,15 @@ export const PasswordInput = ( { texto, width = 266, action }: Props ) => {
                     setLock(!lock);
                     (icon === 'eye') ? setIcon('eye-off') : setIcon('eye');
                 }}
+                style={{ zIndex: 999 }}
             >
                 <Ionicons 
                     size={34} 
                     name={ icon } 
                     style={{
                         marginTop: 3,
-                        borderColor: 'black', 
-                        borderBottomWidth: 1, 
-                        paddingBottom: 8 
+                        paddingBottom: 8,
+                        marginLeft: -30 
                         }} 
                 />
             </TouchableWithoutFeedback>

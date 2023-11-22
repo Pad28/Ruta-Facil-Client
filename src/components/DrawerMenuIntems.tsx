@@ -17,10 +17,17 @@ export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
     return (
         <DrawerContentScrollView>
             <View style={localStyles.imageContainer} >
-                <Image
+                {/* <Image
                     source={ require('../../assets/avatar.jpeg') }
                     style={ localStyles.image }
+                /> */}
+                <Ionicons 
+                    style={ localStyles.image }
+                    name='person-circle-outline'
+                    size={160}
+                    color={'white'}
                 />
+
                 <Text style={ localStyles.nameText } > {userName} </Text>
             </View>
             <DrawerItem 

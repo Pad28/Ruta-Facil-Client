@@ -16,6 +16,9 @@ export const usePeticionPost = <T extends Object, B extends Object>(path: string
         const response = await rutaFacilRegistro.post(path, body)
         .catch(error => {
             if(error.response) {
+                if(error.response.data.msg) {
+                    throw new Error(error.response.data.msg);
+                }
                 throw new Error(error.response.data.errors[0].msg);
             }
             if(error.request) {
@@ -24,7 +27,10 @@ export const usePeticionPost = <T extends Object, B extends Object>(path: string
         });
         
         setIsLoading(false);
-        return response;
+        if(response) {
+            return response.data;
+        }
+        return null;
     
     }
 

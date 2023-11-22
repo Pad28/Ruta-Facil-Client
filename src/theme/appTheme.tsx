@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+const { height: heightWindow, width: widthWindow } = Dimensions.get('window');
 
 const colors = {
     primario: '#67C8D1', // azulito
@@ -21,6 +22,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
+    containerTabNav: {
+        alignSelf: 'center',
+        marginTop: 14,
+        height: heightWindow - 190,
+        width: widthWindow - 20,
+        borderRadius: 10,
+        elevation: 2,
+        backgroundColor: 'white' 
+    }
 });
 
 export {

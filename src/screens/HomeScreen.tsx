@@ -1,30 +1,22 @@
-import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useContext } from 'react'
-import { Button, Text, View } from 'react-native';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { Text, View } from 'react-native';
 import { AuthContext } from '../context/auhtContext/AuthContext';
+import { styles } from '../theme/appTheme';
 
 interface Props extends DrawerScreenProps<any, any> {};
 
 export const HomeScreen = ({ navigation }: Props) => {
-     const { logOut } = useContext(AuthContext);
+    const {authState} = useContext(AuthContext);
 
     return (
-        <View style={{flex: 1}} >
+        <View style={ styles.containerTabNav } >
             <Text> HomeScreen </Text>
-            <Button 
-                title='Log-out' 
-                onPress={() => {
-                   logOut() 
-                }} 
-            />
-
-            <View  style={{
-                height: '100%',
-                width: '100%',
-                backgroundColor: 'green'
-            }} />
-            
-
+            <Text>
+                {
+                    JSON.stringify(authState.user, null, 4)
+                }
+            </Text>
         </View>
     );
 }

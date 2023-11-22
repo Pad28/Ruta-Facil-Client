@@ -56,7 +56,7 @@ export const LoginStackNavigation = () => {
                             component={DrawerMenu}
                             options={{ 
                                 headerShown: false,
-                                cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid 
+                                cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS 
                             }} 
                         />
                     )

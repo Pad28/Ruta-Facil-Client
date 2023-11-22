@@ -18,10 +18,10 @@ export const HomeTabNavigator = () => {
                     backgroundColor: colors.primario,
                     // elevation: 0,
                     height: 90,
-                    // width: 360 ,
-                    // marginBottom: 10,
-                    // alignSelf: 'center',
-                    // borderRadius: 25
+                    width: 360 ,
+                    marginBottom: 10,
+                    alignSelf: 'center',
+                    borderRadius: 25
                 },
                 tabBarLabelStyle: {
                     fontSize: 18,
