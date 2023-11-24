@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react'
-import { StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import { Dimensions, StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 
 interface Props {
     texto: string;
@@ -8,7 +8,9 @@ interface Props {
     action?: (texto: string) => void;
 }
 
-export const PasswordInput = ( { texto, width = 300, action }: Props ) => {
+const { width: widthWindow, height: heightWindow } = Dimensions.get('window');
+
+export const PasswordInput = ( { texto, width = (widthWindow > 450) ? 350 : 300 , action }: Props ) => {
 
     const [ lock, setLock ] = useState(true);
     const [ icon, setIcon ] = useState('eye');
@@ -16,7 +18,7 @@ export const PasswordInput = ( { texto, width = 300, action }: Props ) => {
     return (
         <View
             style={{ 
-                marginTop: 30, 
+                marginTop: ( heightWindow > 850 ) ? 50 : 40, 
                 flexDirection: 'row', 
                 justifyContent: 'center',
                 alignItems: 'center'

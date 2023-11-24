@@ -5,27 +5,37 @@ import { RutasScreen } from '../screens/RutasScreen';
 import { SugerenciasScreen } from '../screens/SugerenciasScreen';
 import { colors } from '../theme/appTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
-const Tab = createBottomTabNavigator();
+export type HomeTabParams = {
+    HomeScreen: undefined;
+    RutasScreen: undefined;
+    SugerenciasScreen: undefined;
+}
 
+const Tab = createBottomTabNavigator<HomeTabParams>();
 export const HomeTabNavigator = () => {
+    const { width: widthWindow, height: heightWindow } = Dimensions.get('window')
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
+                tabBarHideOnKeyboard: true,
                 headerShown: false,
+                tabBarVisibilityAnimationConfig: {
+                },
                 tabBarStyle: {
                     backgroundColor: colors.primario,
                     // elevation: 0,
                     height: 90,
-                    width: 380 ,
+                    width:  widthWindow - 30,
                     marginBottom: 16,
                     alignSelf: 'center',
                     borderRadius: 25
                 },
                 tabBarLabelStyle: {
-                    fontSize: 18,
-                    marginBottom: 10
+                    fontSize: (widthWindow > 450) ? 10 : 18, 
+                    marginBottom: 10,
                 },
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'black',
@@ -56,7 +66,7 @@ export const HomeTabNavigator = () => {
             })}
             
         >
-            <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ title: 'Inico' }} />
+            <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ title: 'Inicio' }} />
             <Tab.Screen name='RutasScreen' component={RutasScreen} options={{ title: 'Rutas' }} />
             <Tab.Screen name='SugerenciasScreen' component={SugerenciasScreen} options={{ title: 'Sugerencias' }} />
         </Tab.Navigator>

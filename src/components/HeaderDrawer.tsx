@@ -3,11 +3,13 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { colors } from '../theme/appTheme';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import Constants from 'expo-constants';
+
 
 export const HeaderDrawer = ( {toogle}: { toogle: () => void } ) => {
     return (
         <View
-            style={ localStyles.container }
+            style={[ localStyles.container, { marginTop: Constants.statusBarHeight } ]}
         >   
             <StatusBar backgroundColor={ colors.primario }/>
             <TouchableOpacity 
@@ -22,17 +24,16 @@ export const HeaderDrawer = ( {toogle}: { toogle: () => void } ) => {
 
 const localStyles = StyleSheet.create({
     container: {
-        // marginTop: 20,
+        paddingBottom: 10,
         alignItems: 'center',
         flexDirection: 'row',
-        height: 90,
+        height: 60,
         backgroundColor: colors.primario
     },
     boton: {
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 18,
-        marginTop: 20, 
         backgroundColor: colors.terciario, 
         borderRadius: 22,
         height: 50,

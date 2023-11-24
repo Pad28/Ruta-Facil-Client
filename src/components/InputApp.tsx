@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, TextInput, View } from "react-native";
+import { Dimensions, StyleSheet, TextInput, View } from "react-native";
 
 interface Props {
     texto: string;
@@ -9,14 +9,16 @@ interface Props {
     action?: (texto: string) => void;
 }
 
-export const InputApp = ( { texto, password = false, iconName, width = 300, action }: Props ) => {
+const { width: widthWindow, height: heightWindow } = Dimensions.get('window');
+
+export const InputApp = ( { texto, password = false, iconName, width = (widthWindow > 450) ? 350 : 300 , action }: Props ) => {
     return (
         <View 
             style={{ 
-                marginTop: 30, 
+                marginTop: ( heightWindow > 850 ) ? 50 : 40, 
                 flexDirection: 'row', 
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
             }} 
         >
             <Ionicons 

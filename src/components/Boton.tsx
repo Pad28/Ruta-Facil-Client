@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { colors } from "../theme/appTheme";
 
 interface Props {
@@ -8,7 +8,9 @@ interface Props {
     action?: () => void;
 }
 
-export const Boton = ( { texto, width = 250, color = colors.secundario, action }: Props ) => {
+const { width: widthWindow } = Dimensions.get('window');
+
+export const Boton = ( { texto, width = (widthWindow > 450) ? 300 : 250, color = colors.secundario, action }: Props ) => {
     return (
         <TouchableOpacity 
             style={{ 

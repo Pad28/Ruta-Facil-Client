@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import { HeaderText } from '../components/HeaderText';
 import { Boton } from '../components/Boton';
 import { styles } from '../theme/appTheme';
@@ -6,6 +6,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { StackLoginParams } from '../navigaton/LoginStackNavigation';
 
 interface Props extends StackScreenProps<StackLoginParams, 'LoginScreen'> {};
+
+const { height: heightWindow } = Dimensions.get('window');
 
 export const LoginScreen = ({ navigation }: Props) => {
 
@@ -39,8 +41,8 @@ export const LoginScreen = ({ navigation }: Props) => {
 
 const localStyles = StyleSheet.create({
     logo: {
-        height: 250,
-        width: 250,
+        height: (heightWindow > 850) ? 330 : 250,
+        width:  (heightWindow > 850) ? 330 : 250,
         marginBottom: 40
     },
 });

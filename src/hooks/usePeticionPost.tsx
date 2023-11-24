@@ -26,11 +26,7 @@ export const usePeticionPost = <T extends Object, B extends Object>(path: string
             }
         });
         
-        setIsLoading(false);
-        if(response) {
-            return response.data;
-        }
-        return null;
+        return response!.data;
     
     }
 

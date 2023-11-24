@@ -1,31 +1,26 @@
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../theme/appTheme';
 import { AuthContext } from '../context/auhtContext/AuthContext';
 
 interface Props {
     drawerProps: DrawerContentComponentProps;
-    userName: string; 
+    userName: string;
+    userID: string;
 }
 
-export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
+export const DrawerMenuIntems = ({ drawerProps , userName, userID }: Props) => {
     const { navigation } = drawerProps;
-    const { logOut } = useContext(AuthContext);
+    const { logOut, authState } = useContext(AuthContext);
 
     return (
         <DrawerContentScrollView>
             <View style={localStyles.imageContainer} >
-                {/* <Image
-                    source={ require('../../assets/avatar.jpeg') }
+                <Image
+                    source={{ uri: authState.imageFile }}
                     style={ localStyles.image }
-                /> */}
-                <Ionicons 
-                    style={ localStyles.image }
-                    name='person-circle-outline'
-                    size={160}
-                    color={'white'}
                 />
 
                 <Text style={ localStyles.nameText } > {userName} </Text>

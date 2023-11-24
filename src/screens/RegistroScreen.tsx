@@ -2,9 +2,11 @@ import React from "react";
 import { 
     ActivityIndicator,
     Alert,
+    Dimensions,
     Keyboard, 
     KeyboardAvoidingView, 
     Platform, 
+    ScrollView, 
     StyleSheet, 
     TouchableWithoutFeedback, 
     View 
@@ -41,11 +43,13 @@ export const RegistroScreen = ( { navigation }: Props ) => {
         setIsLoading 
     } = usePeticionPost<formularioRegistroType, postNewUserType>('/api/usuarios', form);
 
+    const { height: heightWindow, width: widthWindow } = Dimensions.get('window');
     return (
         <KeyboardAvoidingView
-            style={ styles.container } 
+            style={[ styles.container, { paddingTop: ((widthWindow > 450) ? 20 : 0) } ]} 
             behavior={Platform.OS == 'ios' ? 'padding' : 'height' }
         >   
+            <ScrollView>
             <TouchableWithoutFeedback
                 onPress={Keyboard.dismiss}
             >    
@@ -84,7 +88,7 @@ export const RegistroScreen = ( { navigation }: Props ) => {
                             action={texto => onChange(texto, 'confirmPassword')}
                         />
 
-                        <View style={{ marginTop: 50 }} >
+                        <View style={{ marginTop: ( heightWindow > 850 ) ? 120 : 50 }} >
                            {
                             (isLoading)
                                 ? <ActivityIndicator size={60} color={colors.terciario} />
@@ -120,6 +124,7 @@ export const RegistroScreen = ( { navigation }: Props ) => {
                     
                 </View>
             </TouchableWithoutFeedback>
+            </ScrollView>
         </KeyboardAvoidingView>
     );
 }
@@ -127,6 +132,8 @@ export const RegistroScreen = ( { navigation }: Props ) => {
 const localStyles = StyleSheet.create({
     body: { 
         // flex: 9, 
-        alignItems: 'center' }
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });
 

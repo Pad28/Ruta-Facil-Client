@@ -1,10 +1,12 @@
 import { createContext, useReducer } from "react";
 import { UserAuthenticatedInterface } from "../../interfaces/UserAuthenticatedInterface";
 import { authReducer } from "./authReducer";
+import { descargarUserImg } from "../../helpers/descargar-user-img";
 
 export interface AuthState {
     isloggedIn: boolean;
-    user?: UserAuthenticatedInterface;    
+    user?: UserAuthenticatedInterface;
+    imageFile?: string;
 }
 
 export const auhtInitState: AuthState = {
@@ -23,7 +25,15 @@ export const AuthProvider = ({children}: { children: React.JSX.Element | React.J
     const [authState, dispatch] = useReducer( authReducer, auhtInitState);
     
     const logIn = (user: UserAuthenticatedInterface) => {
-        dispatch({ type: "logIn" , payload: user});
+        descargarUserImg(user.user.id, user.user.foto)
+            .then( userImage => {
+                if(userImage) {
+                    dispatch({ type: "logIn" , payload: { user, userImage }});
+                }
+            })
+            .catch(err => console.log(err));
+        
+        
     }
 
     const logOut = () => {
