@@ -14,6 +14,7 @@ import { ScrollView } from "react-native-gesture-handler";
 interface Props extends StackScreenProps<StackLoginParams, 'InicioSecionScreen'> {};
 
 export const IinicioSecionScreen = ({ navigation }: Props) => {
+    const { authState } = useContext(AuthContext);
     useHeaderLeftStack({ navigation, title: 'Inico de sesión' });
     const { logIn } = useContext(AuthContext);
     const { form, onChange } = useForm({} as formularioAutenticacionType);
@@ -71,7 +72,7 @@ export const IinicioSecionScreen = ({ navigation }: Props) => {
                                             action={() => {
                                                 Keyboard.dismiss();
                                                 peticion(form)
-                                                    .then(resp => {
+                                                    .then(async(resp) => {
                                                         logIn(resp as UserAuthenticatedInterface);
                                                     })
                                                     .catch(err => {

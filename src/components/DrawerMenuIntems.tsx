@@ -1,9 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../theme/appTheme';
 import { AuthContext } from '../context/auhtContext/AuthContext';
+import { VentanaConfirmacion } from './VentanaConfirmacion';
 
 interface Props {
     drawerProps: DrawerContentComponentProps;
@@ -14,6 +15,7 @@ interface Props {
 export const DrawerMenuIntems = ({ drawerProps , userName, userID }: Props) => {
     const { navigation } = drawerProps;
     const { logOut, authState } = useContext(AuthContext);
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
         <DrawerContentScrollView>
@@ -56,7 +58,17 @@ export const DrawerMenuIntems = ({ drawerProps , userName, userID }: Props) => {
                 )}
                 label={'Cerrar sesión'}
                 labelStyle={ localStyles.menuTexto }
-                onPress={logOut}
+                onPress={() => { setIsVisible(true) }}
+            />
+
+            <VentanaConfirmacion 
+                texto='¿Desea cerrar seción?'
+                visible={ isVisible }
+                setVisible={setIsVisible}
+                action={ () => { 
+                    setIsVisible(false);
+                    logOut();
+                }}
             />
 
         </DrawerContentScrollView>

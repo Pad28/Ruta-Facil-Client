@@ -11,10 +11,11 @@ const Drawer = createDrawerNavigator();
 export const DrawerMenu = () => {
     const { authState } = useContext(AuthContext);
     let userName: string, userLastname: string, userId: string;
-    if(authState.isloggedIn) {
-        userName = authState.user?.user.nombre as string;
-        userLastname = authState.user?.user.apellidos as string;
-        userId = authState.user?.user.id as string;
+    if(authState.isloggedIn && authState.userAuthenticated ) {
+        const { nombre, apellidos, id } = authState.userAuthenticated.user;
+        userName = nombre;
+        userLastname = apellidos;
+        userId = id;
     }
 
     return (

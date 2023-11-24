@@ -18,6 +18,7 @@ export const BotonSelect = ( { opciones, setState }: Props ) => {
                     
                     return (
                         <TouchableOpacity
+                            key={element}
                             style={[ localStyles.boton, (opcion === element) && { backgroundColor: 'lightblue' } ]}
                             onPress={() => {
                                 setOpcion(element);

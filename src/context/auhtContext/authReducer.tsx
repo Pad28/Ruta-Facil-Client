@@ -2,7 +2,7 @@ import { UserAuthenticatedInterface } from "../../interfaces/UserAuthenticatedIn
 import { AuthState } from "./AuthContext";
 
 type userPayload = {
-    user: UserAuthenticatedInterface;
+    userAuthenticated: UserAuthenticatedInterface;
     userImage: string;
 }
 
@@ -15,7 +15,7 @@ export const authReducer = (state: AuthState, action: authAction ): AuthState =>
         case 'logIn':
             return {
                 isloggedIn: true,
-                user: action.payload.user,
+                userAuthenticated: action.payload.userAuthenticated,
                 imageFile: action.payload.userImage                
             }    
 

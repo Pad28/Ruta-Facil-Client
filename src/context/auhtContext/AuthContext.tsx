@@ -1,11 +1,13 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { UserAuthenticatedInterface } from "../../interfaces/UserAuthenticatedInterface";
 import { authReducer } from "./authReducer";
 import { descargarUserImg } from "../../helpers/descargar-user-img";
 
 export interface AuthState {
     isloggedIn: boolean;
-    user?: UserAuthenticatedInterface;
+    userAuthenticated?: UserAuthenticatedInterface;
     imageFile?: string;
 }
 
@@ -23,21 +25,34 @@ export const AuthContext = createContext({} as AuthContextProps);
 
 export const AuthProvider = ({children}: { children: React.JSX.Element | React.JSX.Element[] }) => {
     const [authState, dispatch] = useReducer( authReducer, auhtInitState);
+
+    useEffect(() => {
+        checkUser();
+    }, []);
+
+    const checkUser = async () => {
+        const user = await AsyncStorage.getItem('userAuthenticated');
+        if(!user) return dispatch({ type: 'logOut' });
+        logIn( JSON.parse(user) as UserAuthenticatedInterface );
+    }
     
-    const logIn = (user: UserAuthenticatedInterface) => {
-        descargarUserImg(user.user.id, user.user.foto)
-            .then( userImage => {
+    
+    const logIn = (userAuthenticated: UserAuthenticatedInterface) => {
+        descargarUserImg(userAuthenticated.user.id, userAuthenticated.user.foto)
+            .then( async(userImage) => {
                 if(userImage) {
-                    dispatch({ type: "logIn" , payload: { user, userImage }});
+                    dispatch({ type: "logIn" , payload: { userAuthenticated, userImage }});
+                    await AsyncStorage.setItem('userAuthenticated', JSON.stringify(userAuthenticated));
                 }
             })
             .catch(err => console.log(err));
-        
-        
     }
 
     const logOut = () => {
-        dispatch({ type: 'logOut' });
+        AsyncStorage.removeItem('userAuthenticated')
+            .then(() => {
+                dispatch({ type: 'logOut' });
+            })
     }
 
     return (
