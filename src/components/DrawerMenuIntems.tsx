@@ -29,12 +29,23 @@ export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
             <DrawerItem 
                 icon={() => (
                     <View style={ localStyles.iconContainer } >
+                        <Ionicons name='home' size={40} color={colors.fondo} />
+                    </View>
+                )}
+                label={'Inicio'}
+                labelStyle={ localStyles.menuTexto }
+                onPress={() => navigation.navigate('HomeScreen')}
+                style={{ marginBottom: 24 }}
+            />
+            <DrawerItem 
+                icon={() => (
+                    <View style={ localStyles.iconContainer } >
                         <Ionicons name='notifications' size={40} color={colors.fondo} />
                     </View>
                 )}
                 label={'Notificaciones'}
                 labelStyle={ localStyles.menuTexto }
-                onPress={() => {}}
+                onPress={() => navigation.navigate('NotificacionesScreen')}
                 style={{ marginBottom: 24 }}
             />
             <DrawerItem 
@@ -45,7 +56,7 @@ export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
                 )}
                 label={'Configuración'}
                 labelStyle={ localStyles.menuTexto }
-                onPress={() => {}}
+                onPress={() => { navigation.navigate('ConfiguracionScreen') }}
                 style={{ marginBottom: 24 }}
             />
 

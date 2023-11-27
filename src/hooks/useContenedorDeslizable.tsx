@@ -50,7 +50,8 @@ export const useContenedorDeslizable = ( { translate, initValue, finalValue, dur
     return {
         AnimatedContainer,
         deploy,
-        disguise
+        disguise,
+        translateValue
     }
 }
 

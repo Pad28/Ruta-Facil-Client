@@ -5,9 +5,16 @@ import { colors } from '../theme/appTheme';
 import { HeaderDrawer } from '../components/HeaderDrawer';
 import { DrawerMenuIntems } from '../components/DrawerMenuIntems';
 import { AuthContext } from '../context/auhtContext/AuthContext';
+import { ConfiguracionScreen } from '../screens/ConfiguracionScreen';
+import { NotificacionesScreen } from '../screens/NotificacionesScreen';
 
-const Drawer = createDrawerNavigator();
+export type DrawerNavigationParams = {
+    HomeTabNavigator: undefined;
+    ConfiguracionScreen: undefined;
+    NotificacionesScreen: undefined;
+}
 
+const Drawer = createDrawerNavigator<DrawerNavigationParams>();
 export const DrawerMenu = () => {
     const { authState } = useContext(AuthContext);
     let userName: string;
@@ -36,6 +43,8 @@ export const DrawerMenu = () => {
             )}
         >   
             <Drawer.Screen name='HomeTabNavigator' component={HomeTabNavigator} />
+            <Drawer.Screen name='ConfiguracionScreen' component={ConfiguracionScreen} />
+            <Drawer.Screen name='NotificacionesScreen' component={NotificacionesScreen} />
         </Drawer.Navigator>
     );
 }

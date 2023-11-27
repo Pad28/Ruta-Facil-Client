@@ -34,7 +34,7 @@ export const HomeTabNavigator = () => {
             )}
             screenOptions={({ route }) => ({
                 headerShown: false,
-                tabBarHideOnKeyboard: true,
+                // tabBarHideOnKeyboard: true,
                 // tabBarStyle: {
                 //     backgroundColor: colors.primario,
                 //     // elevation: 0,
@@ -54,7 +54,7 @@ export const HomeTabNavigator = () => {
                     let iconName = '';
                     switch (route.name) {
                         case 'HomeScreen':
-                            iconName = 'home'
+                            iconName = 'map'
                             break;
                         case 'TopTabRutasNavigator':
                             iconName = 'bus'
@@ -73,7 +73,7 @@ export const HomeTabNavigator = () => {
             })}
             
         >
-            <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ title: 'Inicio' }} />
+            <Tab.Screen name='HomeScreen' component={HomeScreen} options={{ title: 'Mapa' }} />
             <Tab.Screen name='TopTabRutasNavigator' component={TopTabRutasNavigator} options={{ title: 'Rutas' }} />
             <Tab.Screen name='SugerenciasScreen' component={SugerenciasScreen} options={{ title: 'Sugerencias' }} />
         </Tab.Navigator>

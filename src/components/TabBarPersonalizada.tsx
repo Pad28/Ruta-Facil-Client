@@ -1,7 +1,7 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import React, { useEffect } from 'react'
 import { useContenedorDeslizable } from '../hooks';
-import {Keyboard, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {Animated, Keyboard, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors, widthWindow } from '../theme/appTheme';
 
 interface Props extends BottomTabBarProps {
@@ -21,11 +21,11 @@ export const TabBarPersonalizada = ( {
     inactiveBackgroundColor, 
 }: Props ) => {
 
-    const { AnimatedContainer, deploy, disguise } = useContenedorDeslizable({ 
+    const { deploy, disguise, translateValue } = useContenedorDeslizable({ 
         translate: 'translateY', 
         initValue: 1000,
         durationDeploy: 300, 
-        durationDisguise: 600 
+        durationDisguise: 1000 
     });
 
     useEffect(() => {
@@ -36,8 +36,11 @@ export const TabBarPersonalizada = ( {
 
     const { routes } = state;
     return (
-        <AnimatedContainer
-            style={ localStyles.container }
+        <Animated.View
+            style={[ 
+                localStyles.container, 
+                { transform: [{ translateY: translateValue }] }
+            ]}
         >
             {
                 routes.map((route, index) => {
@@ -85,12 +88,14 @@ export const TabBarPersonalizada = ( {
                     );
                 })
             }
-        </AnimatedContainer>
+        </Animated.View>
     );
 }
 
 const localStyles = StyleSheet.create({
     container: {
+        position: 'absolute',
+
         alignSelf: 'center',
         height: 90,
         
@@ -113,7 +118,7 @@ const localStyles = StyleSheet.create({
         paddingHorizontal: 8,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 50
+        borderRadius: 50,
     },
     text: {
         fontSize: (widthWindow > 450) ? 10 : 18,
