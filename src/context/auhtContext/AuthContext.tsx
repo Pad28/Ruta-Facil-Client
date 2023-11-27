@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { UserAuthenticatedInterface } from "../../interfaces/UserAuthenticatedInterface";
@@ -19,23 +19,25 @@ export interface AuthContextProps {
     authState: AuthState;
     logIn: ( user: UserAuthenticatedInterface ) => void;
     logOut: () => void;
+    isLoadingUser: boolean;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
-
 export const AuthProvider = ({children}: { children: React.JSX.Element | React.JSX.Element[] }) => {
     const [authState, dispatch] = useReducer( authReducer, auhtInitState);
+    const [ isLoadingUser, setIsLoadingUser ] = useState(false);
 
     useEffect(() => {
         checkUser();
     }, []);
 
     const checkUser = async () => {
+        setIsLoadingUser(true);
         const user = await AsyncStorage.getItem('userAuthenticated');
         if(!user) return dispatch({ type: 'logOut' });
         logIn( JSON.parse(user) as UserAuthenticatedInterface );
+        setIsLoadingUser(false);
     }
-    
     
     const logIn = (userAuthenticated: UserAuthenticatedInterface) => {
         descargarUserImg(userAuthenticated.user.id, userAuthenticated.user.foto)
@@ -52,6 +54,7 @@ export const AuthProvider = ({children}: { children: React.JSX.Element | React.J
         AsyncStorage.removeItem('userAuthenticated')
             .then(() => {
                 dispatch({ type: 'logOut' });
+                setIsLoadingUser(true);
             })
     }
 
@@ -60,7 +63,8 @@ export const AuthProvider = ({children}: { children: React.JSX.Element | React.J
             value={{
                 authState,
                 logIn,
-                logOut
+                logOut,
+                isLoadingUser
             }}
         >
             { children }

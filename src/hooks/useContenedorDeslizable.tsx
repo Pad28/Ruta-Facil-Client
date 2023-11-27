@@ -6,13 +6,21 @@ interface ParentProps {
     style?: StyleProp<ViewStyle>;
 }
 
-export const useContenedorDeslizable = (translate: 'translateY' | 'translateX' = 'translateX', initValue: number, finalValue?: number) => {
+interface HookProps {
+    translate: 'translateY' | 'translateX';
+    initValue: number;
+    finalValue?: number;
+    durationDeploy?: number;
+    durationDisguise?: number;
+}
+
+export const useContenedorDeslizable = ( { translate, initValue, finalValue, durationDeploy = 1000, durationDisguise = 1000 }: HookProps ) => {
     const translateValue = useRef( new Animated.Value(initValue) ).current;
 
     const deploy = () => {
         Animated.timing(translateValue, {
             toValue: (finalValue) ? finalValue : 0,
-            duration: 1000,
+            duration: durationDeploy,
             useNativeDriver: true
         }).start();
     }
@@ -20,7 +28,7 @@ export const useContenedorDeslizable = (translate: 'translateY' | 'translateX' =
     const disguise = () => {
         Animated.timing(translateValue, {
             toValue: initValue,
-            duration: 1000,
+            duration: durationDisguise,
             useNativeDriver: true
         }).start();
     }
@@ -49,7 +57,5 @@ export const useContenedorDeslizable = (translate: 'translateY' | 'translateX' =
 const localStyles = StyleSheet.create({
     container: {
         position: 'absolute',
-        height: '100%',
-        width: '100%',
     }
 });

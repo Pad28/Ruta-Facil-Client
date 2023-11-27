@@ -9,10 +9,9 @@ import { VentanaConfirmacion } from './VentanaConfirmacion';
 interface Props {
     drawerProps: DrawerContentComponentProps;
     userName: string;
-    userID: string;
 }
 
-export const DrawerMenuIntems = ({ drawerProps , userName, userID }: Props) => {
+export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
     const { navigation } = drawerProps;
     const { logOut, authState } = useContext(AuthContext);
     const [isVisible, setIsVisible] = useState(false);

@@ -11,6 +11,5 @@ export default function App() {
         <LoginStackNavigation />
       </AuthProvider>
     </NavigationContainer>
-    // <Test />
   );
 }

@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Dimensions, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '../theme/appTheme';
-import { Boton } from './Boton';
 
 interface Props {
     texto: string;
@@ -31,7 +30,7 @@ export const VentanaConfirmacion = ( { texto, width = 220, action, setVisible, v
                         style={[ localStyles.boton, { marginRight: 20 } ]}
                         onPress={action}
                     >
-                        <Text style={[ localStyles.textoStyle, { color: 'white' } ]} >Acpetar</Text>
+                        <Text style={[ localStyles.textoStyle, { color: 'white' } ]} >Aceptar</Text>
                     </TouchableOpacity>
 
                     {/* // Cancelar */}
