@@ -15,13 +15,16 @@ import { formualrioUserModify } from '../interfaces/formularioUserModify';
 interface Props extends DrawerScreenProps<DrawerNavigationParams, 'ConfiguracionScreen'> {}
 export const ConfiguracionScreen = ( { navigation }: Props ) => {
     const { authState } = useContext(AuthContext);
+
+    const userUndefined = { nombre: '', apellidos: '', correo: '', password: '', telefono: '' };
     const { 
         nombre,
         apellidos,
         correo,
         password,
         telefono
-    } = (authState.userAuthenticated) ? authState.userAuthenticated.user : { nombre: '', apellidos: '', correo: '', password: '', telefono: '' };
+    } = (authState.userAuthenticated) ? authState.userAuthenticated.user : userUndefined;
+    
     const [ stateModal, setStateModal ] = useState('');
     const { form, onChange } = useForm<formualrioUserModify>({ 
         nombre, apellidos, correo, telefono, password 
@@ -49,28 +52,28 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                     <View style={ localStyles.field } >
                         <Text style={ localStyles.texto } >Nombre: </Text>
                         <BotonTarget 
-                            texto={ nombre } 
+                            texto={ form.nombre } 
                             action={() => setStateModal('nombre-input')} 
                         />
                     </View>
                     <View style={ localStyles.field } >
                         <Text style={ localStyles.texto } >Apellidos: </Text>
                         <BotonTarget 
-                            texto={ apellidos } 
+                            texto={ form.apellidos } 
                             action={() => setStateModal('apellidos-input')} 
                         />
                     </View>
                     <View style={ localStyles.field } >
                         <Text style={ localStyles.texto } >Telefono: </Text>
                         <BotonTarget 
-                            texto={ telefono }
+                            texto={ form.telefono }
                             action={() => setStateModal('telefono-input')} 
                         />
                     </View>
                     <View style={ localStyles.field } >
                         <Text style={ localStyles.texto } >Correo: </Text>
                         <BotonTarget 
-                            texto={ correo } 
+                            texto={ form.correo } 
                             action={() => setStateModal('correo-input')} 
                         />
                     </View>
@@ -89,7 +92,6 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                     </View>
 
                     <VentanaModificacion 
-                        action={() => {}}
                         onChangeText={(texto) => onChange(texto, 'nombre')} 
                         name='nombre-input'
                         placeholder={nombre}
@@ -97,7 +99,6 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                         setStateType={setStateModal}
                     />
                     <VentanaModificacion 
-                        action={() => {}}
                         onChangeText={(texto) => onChange(texto, 'apellidos')} 
                         name='apellidos-input'
                         placeholder={apellidos}
@@ -105,7 +106,6 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                         setStateType={setStateModal}
                     />
                     <VentanaModificacion
-                        action={() => {}} 
                         onChangeText={(texto) => onChange(texto, 'telefono')} 
                         name='telefono-input'
                         placeholder={telefono}
@@ -113,7 +113,6 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                         setStateType={setStateModal}
                     />
                     <VentanaModificacion 
-                        action={() => {}} 
                         onChangeText={(texto) => onChange(texto, 'correo')} 
                         name='correo-input'
                         placeholder={correo}
@@ -121,7 +120,6 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                         setStateType={setStateModal}
                     />
                     <VentanaModificacion 
-                        action={() => {}} 
                         onChangeText={(texto) => onChange(texto, 'password')} 
                         name='password-input'
                         placeholder={'Contraseña'}

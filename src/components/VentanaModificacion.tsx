@@ -7,7 +7,7 @@ interface Props {
     visible?: boolean;
     placeholder?: string;
     setVisible?: (value: React.SetStateAction<boolean>) => void;
-    action: () => void;
+    action?: () => void;
     onChangeText: (text: string) => void;
 
     name: string;
@@ -42,7 +42,7 @@ export const VentanaModificacion = ( { visible, setVisible, action, placeholder 
                             onPress={() => {
                                 (setVisible) && setVisible(false);
                                 (setStateType) && setStateType('');
-                                action();
+                                (action) && action();
                             }}
                         >
                             <Text style={ localStyles.text } > Aceptar </Text>

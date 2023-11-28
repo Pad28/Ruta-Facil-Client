@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { rutaFacilRegistro } from "../api/rutaFacilRestServer";
 
-export const usePeticionPost = <T extends Object, B extends Object>(path: string, form: T) => {
+export const usePeticionPost = <T extends Object, B extends Object>(path: string, form: T, config?: {}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const peticion = async(body: B) => {
@@ -13,7 +13,7 @@ export const usePeticionPost = <T extends Object, B extends Object>(path: string
             }
         });
 
-        const response = await rutaFacilRegistro.post(path, body)
+        const response = await rutaFacilRegistro.post(path, body, (config) && config)
         .catch(error => {
             if(error.response) {
                 if(error.response.data.msg) {

@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserAuthenticatedInterface } from "../../interfaces/UserAuthenticatedInterface";
 import { authReducer } from "./authReducer";
 import { descargarUserImg } from "../../helpers/descargar-user-img";
+import { rutaFacilRegistro } from "../../api/rutaFacilRestServer";
+import { Alert } from "react-native";
 
 export interface AuthState {
     isloggedIn: boolean;
@@ -27,6 +29,7 @@ export const AuthProvider = ({children}: { children: React.JSX.Element | React.J
     const [authState, dispatch] = useReducer( authReducer, auhtInitState);
     const [ isLoadingUser, setIsLoadingUser ] = useState(false);
 
+
     useEffect(() => {
         checkUser();
     }, []);
@@ -34,8 +37,21 @@ export const AuthProvider = ({children}: { children: React.JSX.Element | React.J
     const checkUser = async () => {
         setIsLoadingUser(true);
         const user = await AsyncStorage.getItem('userAuthenticated');
+        
         if(!user) return dispatch({ type: 'logOut' });
-        logIn( JSON.parse(user) as UserAuthenticatedInterface );
+        const userParse = (JSON.parse(user) as UserAuthenticatedInterface);
+        try {
+            await rutaFacilRegistro.post('/api/auth/validar-token', {}, {
+                headers: { 'api-key': userParse.token }
+            });
+        } catch (error) {
+            Alert.alert('Error', 'Su sesión a expirado');
+            setIsLoadingUser(false);
+            logOut();
+            return;
+        }
+
+        logIn( userParse );
         setIsLoadingUser(false);
     }
     
