@@ -5,6 +5,7 @@ import { HeaderDrawer } from "./HeaderDrawer";
 import { HeaderText } from "./HeaderText";
 import { InputApp } from "./InputApp";
 import { PasswordInput } from "./PasswordInput";
+import { InputBotonRight } from "./InputBotonRight";
 
 export {
     Boton,
@@ -13,5 +14,6 @@ export {
     HeaderDrawer,
     HeaderText,
     InputApp,
+    InputBotonRight,
     PasswordInput
 }

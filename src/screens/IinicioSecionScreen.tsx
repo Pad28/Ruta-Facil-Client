@@ -72,7 +72,7 @@ export const IinicioSecionScreen = ({ navigation }: Props) => {
                                             action={() => {
                                                 Keyboard.dismiss();
                                                 peticion(form)
-                                                    .then(async(resp) => {
+                                                    .then((resp) => {
                                                         logIn(resp as UserAuthenticatedInterface);
                                                     })
                                                     .catch(err => {

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { rutaFacilRegistro } from "../api/rutaFacilRestServer";
+import { AxiosRequestConfig } from "axios";
 
-export const usePeticionPost = <T extends Object, B extends Object>(path: string, form: T, config?: {}) => {
+export const usePeticionPost = <T extends Object, B extends Object>(path: string, form: T, config?: AxiosRequestConfig<B>) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const peticion = async(body: B) => {
@@ -12,7 +13,7 @@ export const usePeticionPost = <T extends Object, B extends Object>(path: string
                 throw new Error ('Completa todos los campos');
             }
         });
-
+        
         const response = await rutaFacilRegistro.post(path, body, (config) && config)
         .catch(error => {
             if(error.response) {

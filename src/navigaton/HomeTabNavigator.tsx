@@ -16,7 +16,6 @@ export type HomeTabParams = {
 
 const Tab = createBottomTabNavigator<HomeTabParams>();
 export const HomeTabNavigator = () => {
-    // const { width: widthWindow, height: heightWindow } = Dimensions.get('window')
 
     return (
         <Tab.Navigator
@@ -34,22 +33,6 @@ export const HomeTabNavigator = () => {
             )}
             screenOptions={({ route }) => ({
                 headerShown: false,
-                // tabBarHideOnKeyboard: true,
-                // tabBarStyle: {
-                //     backgroundColor: colors.primario,
-                //     // elevation: 0,
-                //     height: 90,
-                //     width:  widthWindow - 30,
-                //     marginBottom: 16,
-                //     alignSelf: 'center',
-                //     borderRadius: 25
-                // },
-                // tabBarLabelStyle: {
-                //     fontSize: (widthWindow > 450) ? 10 : 18, 
-                //     marginBottom: 10,
-                // },
-                // tabBarActiveTintColor: 'white',
-                // tabBarInactiveTintColor: 'black',
                 tabBarIcon: ({ color }) => {
                     let iconName = '';
                     switch (route.name) {
@@ -65,9 +48,7 @@ export const HomeTabNavigator = () => {
                     }
 
                     return (
-                        // <View style={localStyles.iconContainer} >
-                            <Ionicons name={iconName} color={color} size={40} />
-                        // </View>
+                        <Ionicons name={iconName} color={color} size={40} />
                     )
                 }
             })}
@@ -79,15 +60,3 @@ export const HomeTabNavigator = () => {
         </Tab.Navigator>
     );
 }
-
-// const localStyles = StyleSheet.create({
-//     iconContainer: {
-//         // marginTop: 10,
-//         width: 54,
-//         height: 54,
-//         backgroundColor: colors.terciario,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         borderRadius: 30
-//     }
-// });

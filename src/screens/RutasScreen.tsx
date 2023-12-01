@@ -1,17 +1,28 @@
-import React, { useState } from 'react'
-import { Text, View } from 'react-native';
+import React from 'react'
+import { View } from 'react-native';
 
-import { styles } from '../theme/appTheme';
-import { BotonSelect } from '../components/BotonSelect';
+import { colors, styles } from '../theme/appTheme';
+import { InputBotonRight } from '../components';
 
 export const RutasScreen = () => {
-    const [selected, setSelected] = useState('');
 
     return (
-        <View style={ styles.containerTopTabNav } >
-            <Text> RutasScreen </Text>
-            <BotonSelect opciones={['Opcion 1', 'Opcion 2', 'Opcion 3']} setState={setSelected} />
-            <Text> { selected } </Text>
+        <View style={[ 
+            styles.containerTopTabNav, 
+            { alignItems: 'center' } 
+            ]}
+        >
+            <View
+                style={{ marginTop: 12 }}
+            >
+                <InputBotonRight 
+                    action={(termino) => console.log(termino)}
+                    iconName='search'
+                    placeHolder='Buscar'
+                    colorBoton={ colors.terciario }
+                />
+            </View>
+            
         </View>
     );
 }

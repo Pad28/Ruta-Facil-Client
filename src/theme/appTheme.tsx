@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
+    subtitulo: {
+        fontWeight: 'bold',
+        fontSize: 18,
+    },
     container: {
         flex: 1,
         backgroundColor: colors.fondo
