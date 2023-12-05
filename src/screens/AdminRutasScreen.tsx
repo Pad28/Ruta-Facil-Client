@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ActivityIndicator, StyleSheet, View, FlatList, TouchableOpacity, Alert, Modal, Text } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, FlatList, TouchableOpacity, Alert, Modal, Text, Button } from 'react-native';
 import { colors, heightWindow, styles } from '../theme/appTheme';
 import { InputApp, InputBotonRight } from '../components';
 import { Ionicons } from '@expo/vector-icons';
@@ -71,37 +71,43 @@ export const AdminRutasScreen = ( { navigation, route }: Props ) => {
                     (isLoading || isLoadingDelete )
                     ? <ActivityIndicator size={60} color={colors.terciario} style={{ marginTop: 120 }} />
                     : (
-                        <FlatList 
-                            data={results.rutas}
-                            renderItem={({ item }) => (
-                                <ItemBotonIconRight
-                                    onPressText={() => {
-                                        navigation.navigate('NewRutaScreen', item)
-                                    }} 
-                                    colorIcon='red'
-                                    onPress={() => {
-                                        peticonDelete(
-                                            `/api/rutas/${item.numero}`, 
-                                            { headers: { 'api-key': authState.userAuthenticated?.token || '' } }
-                                        )
-                                        .then(res => {
-                                            console.log(res);
-                                            setIsLoadingDelete(false);
-                                            setRefresh(!refresh);
-                                            Alert.alert('Aviso', 'Ruta eliminada');
-                                        })
-                                        .catch(err => {
-                                            setRefresh(!refresh);
-                                            setIsLoadingDelete(false);
-                                            Alert.alert('Error', err.message);
-                                        });
-                                    }}
-                                    iconName='trash'
-                                    value={{}}
-                                    title={`${item.origen} - ${item.destino}`}
-                                />
-                            )}
+                        <Button
+                            title='nav'
+                            onPress={() => {
+                                navigation.navigate('NewRutaScreen', results.rutas[0])
+                            }} 
                         />
+                        // <FlatList 
+                        //     style={{ flex: 1 }}
+                        //     data={results.rutas}
+                        //     renderItem={({ item }) => (
+                        //         <ItemBotonIconRight
+                        //             onPressText={() => {
+                        //                 navigation.navigate('NewRutaScreen', item);
+                        //             }} 
+                        //             colorIcon='red'
+                        //             onPress={() => {
+                        //                 peticonDelete(
+                        //                     `/api/rutas/${item.numero}`, 
+                        //                     { headers: { 'api-key': authState.userAuthenticated?.token || '' } }
+                        //                 )
+                        //                 .then(res => {
+                        //                     setIsLoadingDelete(false);
+                        //                     setRefresh(!refresh);
+                        //                     Alert.alert('Aviso', 'Ruta eliminada');
+                        //                 })
+                        //                 .catch(err => {
+                        //                     setRefresh(!refresh);
+                        //                     setIsLoadingDelete(false);
+                        //                     Alert.alert('Error', err.message);
+                        //                 });
+                        //             }}
+                        //             iconName='trash'
+                        //             value={{}}
+                        //             title={`${item.origen} - ${item.destino}`}
+                        //         />
+                        //     )}
+                        // />
                     )
             }
             </View>

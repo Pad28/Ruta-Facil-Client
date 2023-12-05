@@ -5,7 +5,6 @@ import { HeaderRutaDetail } from '../components/HeaderRutaDetail';
 import { StackScreenProps } from '@react-navigation/stack';
 import { StackRutasAdminProps } from '../navigaton/StackRutasAdminNavigation';
 import MapView from 'react-native-maps';
-import { useLocation } from '../hooks/useLocation';
 import { Fab } from '../components/Fab';
 
 interface Props extends StackScreenProps<StackRutasAdminProps, 'NewRutaScreen'>{}
@@ -21,16 +20,6 @@ export const NewRutaScreen = ( { navigation, route }: Props ) => {
         longitude: -84.38
       });
 
-      const mapViewRef = useRef<MapView>();  
-      const { currentLocation, hasLocation } = useLocation();
-      const centerPosition = async() => {
-        const location = await currentLocation();
-        mapViewRef.current?.animateCamera({
-            center: { latitude: location!.latitude, longitude: location!.longitude }
-        });
-    }
-
-
     return (
         <View style={ styles.containerTopTabNav } >
             <HeaderRutaDetail 
@@ -41,7 +30,6 @@ export const NewRutaScreen = ( { navigation, route }: Props ) => {
             <ScrollView style={{ marginTop: 10 }} >
                 <View style={ localStyles.containerMap } >
                     <MapView
-                        ref={ el => mapViewRef.current = el! } 
                         showsUserLocation
                         style={ localStyles.map } 
                         initialRegion={{
@@ -53,7 +41,7 @@ export const NewRutaScreen = ( { navigation, route }: Props ) => {
                     >
                         <Fab
                             iconName='compass-outline'
-                            onPress={() => centerPosition()}
+                            onPress={() => {}}
                             style={{
                                 position: 'absolute',
                                 bottom: 0,
