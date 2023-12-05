@@ -25,13 +25,7 @@ export const RutaDetailScreen = ( { navigation, route }: Props ) => {
                 onPressNavigate={navigation.pop}
             />
             <View 
-                style={{
-                    backgroundColor: 'blue',
-                    height: 350,
-                    marginTop: 10,
-                    borderRadius: 10,
-                    overflow: 'hidden'
-                }}
+                style={ localStyles.containerMap }
             >
                 <MapView 
                     style={{ height: '100%', width:'100%' }}
@@ -62,5 +56,13 @@ const localStyles = StyleSheet.create({
     continerBottons: {
         marginTop: 20, 
         alignItems: 'center',
+    },
+    containerMap: {
+        backgroundColor: 'blue',
+        height: 350,
+        width: 350,
+        marginTop: 10,
+        borderRadius: 10,
+        overflow: 'hidden'
     }
 });

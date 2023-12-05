@@ -5,12 +5,12 @@ import { InputBotonRight } from '../components';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ItemBotonIconRight } from '../components/ItemBotonIconRight';
-import { StackAdminChoferesProps } from '../navigaton/StackChoferesAdminNavigator';
 import { StackScreenProps } from '@react-navigation/stack';
+import { StackAdminProps } from '../navigaton/StackAdminNavigation';
 
-interface Props extends StackScreenProps<StackAdminChoferesProps, 'AdminChoferesScreen'>{}
+interface Props extends StackScreenProps<StackAdminProps, 'AdministradorScreen'> {}
 
-export const AdminChoferesScreen = ( { navigation }: Props ) => {
+export const AdministradorScreen = ( { navigation }: Props ) => {
     const [ refresh, setRefresh ] = useState(false);
     
     return (
@@ -26,7 +26,7 @@ export const AdminChoferesScreen = ( { navigation }: Props ) => {
                 />
                 <TouchableOpacity
                     style={ localStyles.botonPlus }
-                    onPress={() => navigation.navigate('AgregarChoferesScreen')}
+                    onPress={() => navigation.navigate('AdminAdScreen')}
                 >
                     <Ionicons 
                         name='add-circle'
@@ -40,29 +40,15 @@ export const AdminChoferesScreen = ( { navigation }: Props ) => {
                     colorIcon='red'
                     iconName='trash'
                     onPress={() => {}}
-                    onPressText={() => navigation.navigate('AgregarChoferesScreen')}
-                    title='Juan Perez'
+                    onPressText={() => {}}
+                    title='Admin test1'
                     value={{}}
                 />
                 <ItemBotonIconRight
                     colorIcon='red'
                     iconName='trash'
                     onPress={() => {}}
-                    title='Mario Hernandez'
-                    value={{}}
-                />
-                <ItemBotonIconRight
-                    colorIcon='red'
-                    iconName='trash'
-                    onPress={() => {}}
-                    title='Pedro Gutierrez'
-                    value={{}}
-                />
-                <ItemBotonIconRight
-                    colorIcon='red'
-                    iconName='trash'
-                    onPress={() => {}}
-                    title='Enrique Velasco'
+                    title='Admin Test2'
                     value={{}}
                 />
             </View>

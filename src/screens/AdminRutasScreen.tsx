@@ -71,43 +71,37 @@ export const AdminRutasScreen = ( { navigation, route }: Props ) => {
                     (isLoading || isLoadingDelete )
                     ? <ActivityIndicator size={60} color={colors.terciario} style={{ marginTop: 120 }} />
                     : (
-                        <Button
-                            title='nav'
-                            onPress={() => {
-                                navigation.navigate('NewRutaScreen', results.rutas[0])
-                            }} 
+                        <FlatList 
+                            style={{ flex: 1 }}
+                            data={results.rutas}
+                            renderItem={({ item }) => (
+                                <ItemBotonIconRight
+                                    onPressText={() => {
+                                        navigation.navigate('NewRutaScreen', item);
+                                    }} 
+                                    colorIcon='red'
+                                    onPress={() => {
+                                        peticonDelete(
+                                            `/api/rutas/${item.numero}`, 
+                                            { headers: { 'api-key': authState.userAuthenticated?.token || '' } }
+                                        )
+                                        .then(res => {
+                                            setIsLoadingDelete(false);
+                                            setRefresh(!refresh);
+                                            Alert.alert('Aviso', 'Ruta eliminada');
+                                        })
+                                        .catch(err => {
+                                            setRefresh(!refresh);
+                                            setIsLoadingDelete(false);
+                                            Alert.alert('Error', err.message);
+                                        });
+                                    }}
+                                    iconName='trash'
+                                    value={{}}
+                                    title={`${item.origen} - ${item.destino}`}
+                                />
+                            )}
                         />
-                        // <FlatList 
-                        //     style={{ flex: 1 }}
-                        //     data={results.rutas}
-                        //     renderItem={({ item }) => (
-                        //         <ItemBotonIconRight
-                        //             onPressText={() => {
-                        //                 navigation.navigate('NewRutaScreen', item);
-                        //             }} 
-                        //             colorIcon='red'
-                        //             onPress={() => {
-                        //                 peticonDelete(
-                        //                     `/api/rutas/${item.numero}`, 
-                        //                     { headers: { 'api-key': authState.userAuthenticated?.token || '' } }
-                        //                 )
-                        //                 .then(res => {
-                        //                     setIsLoadingDelete(false);
-                        //                     setRefresh(!refresh);
-                        //                     Alert.alert('Aviso', 'Ruta eliminada');
-                        //                 })
-                        //                 .catch(err => {
-                        //                     setRefresh(!refresh);
-                        //                     setIsLoadingDelete(false);
-                        //                     Alert.alert('Error', err.message);
-                        //                 });
-                        //             }}
-                        //             iconName='trash'
-                        //             value={{}}
-                        //             title={`${item.origen} - ${item.destino}`}
-                        //         />
-                        //     )}
-                        // />
                     )
             }
             </View>

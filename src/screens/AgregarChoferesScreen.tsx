@@ -1,20 +1,24 @@
 import React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { colors, heightWindow, styles } from '../theme/appTheme';
-import { HeaderRutaDetail } from '../components/HeaderRutaDetail';
-import { StackAdminProps } from '../navigaton/StackAdminNavigation';
-import { StackScreenProps } from '@react-navigation/stack';
-import { Boton, InputApp, PasswordInput } from '../components';
+import { StyleSheet, Text, View } from 'react-native'
+import { colors, heightWindow, styles } from '../theme/appTheme'
+import { Boton, InputApp, InputBotonRight } from '../components'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Ionicons } from '@expo/vector-icons'
+import { HeaderRutaDetail } from '../components/HeaderRutaDetail'
+import { StackScreenProps } from '@react-navigation/stack'
+import { StackAdminChoferesProps } from '../navigaton/StackChoferesAdminNavigator'
 
-interface Props extends StackScreenProps<StackAdminProps, 'AdminAdScreen'> {}
-export const AdminAdScreen = ( { navigation }: Props ) => {
+interface Props extends StackScreenProps<StackAdminChoferesProps, 'AgregarChoferesScreen'> {}
+
+export const AgregarChoferesScreen = ( { navigation }: Props ) => {
+    
     return (
         <View style={ styles.containerTopTabNav } >
             <HeaderRutaDetail 
                 onPressNavigate={() => navigation.pop()}
                 title='Agregar Chofer'
             />
-            <ScrollView>
+            <View>
                 <InputApp 
                     texto='Nombre'
                     iconName='person'
@@ -32,26 +36,15 @@ export const AdminAdScreen = ( { navigation }: Props ) => {
                     texto='Telefono'
                     iconName='call'
                 />
-                <PasswordInput 
-                    texto="Constraseña" 
-                    action={texto => {}}
-                />
-                <PasswordInput 
-                    texto="Confirmar constraseña" 
-                    action={texto => {}}
-                />
-
                 <View style={{ marginTop: 20, alignSelf: 'center' }} >
                     <Boton 
                         texto='Aceptar'
                     />
                 </View>
-                <View style={{ height: 60 }} />
-            </ScrollView>
+            </View>
         </View>
     );
 }
-
 
 const localStyles = StyleSheet.create({
     headerContainer: {

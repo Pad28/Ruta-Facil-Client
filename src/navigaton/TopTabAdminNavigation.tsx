@@ -1,9 +1,8 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { colors, widthWindow } from '../theme/appTheme';
-import { AdminRutasScreen } from '../screens/AdminRutasScreen';
-import { AdminChoferesScreen } from '../screens/AdminChoferesScreen';
-import { AdminAdScreen } from '../screens/AdminAdScreen';
 import { StackRutasAdminNavigation } from './StackRutasAdminNavigation';
+import { StackChoferesNavigator } from './StackChoferesAdminNavigator';
+import { StackAdminNavigator } from './StackAdminNavigation';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -33,8 +32,8 @@ export const TopTabAdminNavigation = () => {
         })}
     >
         <Tab.Screen options={{ title: 'Rutas' }} name='StackRutasAdminNavigation' component={StackRutasAdminNavigation} />
-        <Tab.Screen options={{ title: 'Choferes' }} name='AdminChoferesScreen' component={AdminChoferesScreen} />
-        <Tab.Screen options={{ title: 'Administrador' }} name='AdminAdScreen' component={AdminAdScreen} />
+        <Tab.Screen options={{ title: 'Choferes' }} name='StackChoferesNavigator' component={StackChoferesNavigator} />
+        <Tab.Screen options={{ title: 'Administrador' }} name='StackAdminNavigator' component={StackAdminNavigator} />
     </Tab.Navigator>
   );
 }
