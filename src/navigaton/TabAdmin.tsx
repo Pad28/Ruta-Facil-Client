@@ -7,15 +7,12 @@ import { colors } from '../theme/appTheme';
 import { TopTabRutasNavigator } from './TopTabRutasNavigator';
 import { TabBarPersonalizada } from '../components/TabBarPersonalizada';
 import { NotificacionesScreen } from '../screens/NotificacionesScreen';
+import { AdminScreen } from '../screens/AdminScreen';
+import { AdminReportesScreen } from '../screens/AdminReportesScreen';
+import { TopTabAdminNavigation } from './TopTabAdminNavigation';
 
-export type HomeTabParams = {
-    TopTabRutasNavigator: undefined;
-    SugerenciasScreen: undefined;
-    NotificacionesScreen: undefined;
-}
-
-const Tab = createBottomTabNavigator<HomeTabParams>();
-export const HomeTabNavigator = () => {
+const Tab = createBottomTabNavigator();
+export const TabAdmin = () => {
 
     return (
         <Tab.Navigator
@@ -36,13 +33,10 @@ export const HomeTabNavigator = () => {
                 tabBarIcon: ({ color }) => {
                     let iconName = '';
                     switch (route.name) {
-                        case 'NotificacionesScreen':
-                            iconName = 'notifications'
+                        case 'TopTabAdminNavigation':
+                            iconName = 'home'
                             break;
-                        case 'TopTabRutasNavigator':
-                            iconName = 'bus'
-                            break;
-                        case 'SugerenciasScreen':
+                        case 'AdminReportesScreen':
                             iconName = 'clipboard'
                             break;
                     }
@@ -54,9 +48,9 @@ export const HomeTabNavigator = () => {
             })}
             
         >
-            <Tab.Screen name='TopTabRutasNavigator' component={TopTabRutasNavigator} options={{ title: 'Rutas' }} />
-            <Tab.Screen name='SugerenciasScreen' component={SugerenciasScreen} options={{ title: 'Sugerencias' }} />
-            <Tab.Screen name='NotificacionesScreen' component={NotificacionesScreen} options={{ title: 'Notificaciones' }} />
+
+            <Tab.Screen name='TopTabAdminNavigation' component={TopTabAdminNavigation} options={{ title: 'Inicio' }} />
+            <Tab.Screen name='AdminReportesScreen' component={AdminReportesScreen} options={{ title: 'Reportes' }} />
         </Tab.Navigator>
     );
 }

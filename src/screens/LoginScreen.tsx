@@ -61,7 +61,7 @@ const localStyles = StyleSheet.create({
     logo: {
         height: (heightWindow > 850) ? 330 : 250,
         width:  (heightWindow > 850) ? 330 : 250,
-        marginBottom: 40
+        marginBottom: 20,
     },
 });
 

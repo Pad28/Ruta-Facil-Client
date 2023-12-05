@@ -6,12 +6,16 @@ import { Ionicons } from '@expo/vector-icons';
 interface Props {
     texto: string;
     action?: () => void;
+
+    width?: number;
+    heigth?: number;
+    iconName?: string;
 }
 
-export const BotonTarget = ( { action, texto }: Props ) => {
+export const BotonTarget = ( { action, texto, width = 230, iconName = 'pencil-outline', heigth }: Props ) => {
     return (
         <TouchableOpacity
-            style={ localStyles.container } 
+            style={[ localStyles.container, { width, height: (heigth) && heigth } ]} 
             onPress={action}
         >
             <Text
@@ -19,7 +23,7 @@ export const BotonTarget = ( { action, texto }: Props ) => {
             >
                 { texto }
             </Text>
-            <Ionicons name='pencil-outline' size={26} />
+            <Ionicons name={iconName} size={26} />
         </TouchableOpacity>
     );
 }

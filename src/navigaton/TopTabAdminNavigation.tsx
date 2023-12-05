@@ -1,12 +1,13 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { RutasFavoritasScreen } from '../screens/RutasFavoritasScreen';
 import { colors, widthWindow } from '../theme/appTheme';
-import { StackRutasNavigator } from './StackRutasNavigator';
-import { StackFavoritasNavigator } from './StackFavoritasNavigator';
+import { AdminRutasScreen } from '../screens/AdminRutasScreen';
+import { AdminChoferesScreen } from '../screens/AdminChoferesScreen';
+import { AdminAdScreen } from '../screens/AdminAdScreen';
+import { StackRutasAdminNavigation } from './StackRutasAdminNavigation';
 
 const Tab = createMaterialTopTabNavigator();
 
-export const TopTabRutasNavigator = () => {
+export const TopTabAdminNavigation = () => {
   return (
     <Tab.Navigator
         screenOptions={ () => ({
@@ -21,7 +22,7 @@ export const TopTabRutasNavigator = () => {
             tabBarLabelStyle: {
                 fontWeight: 'bold',
                 color: colors.fondo,
-                fontSize: 14
+                fontSize: 12
             },
             tabBarIndicatorStyle: {
                 backgroundColor: 'white',
@@ -31,8 +32,9 @@ export const TopTabRutasNavigator = () => {
             // swipeEnabled: false
         })}
     >
-        <Tab.Screen options={{ title: 'Rutas' }} name='StackRutasNavigator' component={StackRutasNavigator} />
-        <Tab.Screen options={{ title: 'Favoritas' }} name='StackFavoritasNavigator' component={StackFavoritasNavigator} />
+        <Tab.Screen options={{ title: 'Rutas' }} name='StackRutasAdminNavigation' component={StackRutasAdminNavigation} />
+        <Tab.Screen options={{ title: 'Choferes' }} name='AdminChoferesScreen' component={AdminChoferesScreen} />
+        <Tab.Screen options={{ title: 'Administrador' }} name='AdminAdScreen' component={AdminAdScreen} />
     </Tab.Navigator>
   );
 }

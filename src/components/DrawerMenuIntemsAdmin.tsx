@@ -11,7 +11,7 @@ interface Props {
     userName: string;
 }
 
-export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
+export const DrawerMenuIntemsAdmin = ({ drawerProps , userName }: Props) => {
     const { navigation } = drawerProps;
     const { logOut, authState } = useContext(AuthContext);
     const [isVisible, setIsVisible] = useState(false);
@@ -34,7 +34,7 @@ export const DrawerMenuIntems = ({ drawerProps , userName }: Props) => {
                 )}
                 label={'Inicio'}
                 labelStyle={ localStyles.menuTexto }
-                onPress={() => navigation.navigate('RutasScreen')}
+                onPress={() => navigation.navigate('TabAdmin')}
                 style={{ marginBottom: 24 }}
             />
             <DrawerItem 

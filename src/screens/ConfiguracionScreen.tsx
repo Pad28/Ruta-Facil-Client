@@ -14,9 +14,11 @@ import { UserAuthenticatedInterface } from '../interfaces';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 
+import * as ImagePicker from 'expo-image-picker';
+import { rutaFacilRegistro } from '../api/rutaFacilRestServer';
+import { useUploadImage } from '../hooks/useUploadImage';
 
-interface Props extends DrawerScreenProps<DrawerNavigationParams, 'ConfiguracionScreen'> {}
-export const ConfiguracionScreen = ( { navigation }: Props ) => {
+export const ConfiguracionScreen = () => {
     const { authState, logIn } = useContext(AuthContext);
 
     const userUndefined = { id: '', nombre: '', apellidos: '', correo: '', password: '', telefono: '' };
@@ -38,6 +40,23 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
         `/api/usuarios/${id}`,
         { headers: { 'api-key': authState.userAuthenticated?.token } }
     );
+
+    const [image, setImage] = useState(authState.imageFile);
+    const { uploadImage } = useUploadImage();
+
+    const pickImage = async() => {
+        let result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [5, 5],
+            quality: 1,
+            cameraType: ImagePicker.CameraType.front
+          });
+      
+          if (!result.canceled) {
+            setImage(result.assets[0].uri);
+          }
+    }
 
     return (
         <View 
@@ -66,16 +85,17 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                                 <>
                                 <TouchableOpacity
                                     style={ localStyles.fotoContainer }
+                                    // onPress={pickImage}
                                 >
                                     <Image
-                                        source={{ uri: authState.imageFile }}
+                                        source={{ uri: image }}
                                         style={ localStyles.image }
                                     />
-                                    <View
+                                    {/* <View
                                         style={ localStyles.fotoIconContainer }
                                     >
                                         <Ionicons name='camera' size={40} color={colors.fondo} />
-                                    </View>
+                                    </View> */}
                                 </TouchableOpacity>
                                 
                                 <View style={ localStyles.field } >
@@ -119,7 +139,11 @@ export const ConfiguracionScreen = ( { navigation }: Props ) => {
                                         texto='Aceptar'
                                         action={() => {
                                             peticion(form)
-                                                .then(res => {
+                                                .then(async (res) => {
+                                                    await uploadImage( 
+                                                        image || '', 
+                                                        '/api/uploads/foto-perfil/' + id
+                                                    );
                                                     setIsLoading(false);
                                                     logIn(res as UserAuthenticatedInterface)
                                                 })

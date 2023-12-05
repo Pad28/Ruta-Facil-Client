@@ -15,7 +15,7 @@ interface Props extends StackScreenProps<StackLoginParams, 'InicioSecionScreen'>
 
 export const IinicioSecionScreen = ({ navigation }: Props) => {
     const { authState } = useContext(AuthContext);
-    useHeaderLeftStack({ navigation, title: 'Inico de sesión' });
+    useHeaderLeftStack({ navigation, title: 'Inicio de sesión' });
     const { logIn } = useContext(AuthContext);
     const { form, onChange } = useForm({} as formularioAutenticacionType);
     const { 

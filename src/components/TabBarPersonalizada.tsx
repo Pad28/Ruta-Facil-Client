@@ -115,7 +115,7 @@ const localStyles = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 8,
         height: 70,
-        paddingHorizontal: 8,
+        paddingHorizontal: 6,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,

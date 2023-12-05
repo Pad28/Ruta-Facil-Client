@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 interface Props {
     opciones: string[];
@@ -7,15 +7,17 @@ interface Props {
 
     widthBoton: number;
     onPressArray?: (() => void)[];
+    style?: StyleProp<ViewStyle>;
+    styleBoton?: StyleProp<ViewStyle>;
 }
 
 // El componente recobe un arreglo de string con la opciones o los botones a mostrar, 
 // y tambien recibe el hook de useState para obtener el valor selecionado
-export const BotonSelect = ( { opciones, setState, widthBoton, onPressArray }: Props ) => {
+export const BotonSelect = ( { opciones, setState, widthBoton, onPressArray, style, styleBoton }: Props ) => {
      const [ opcion, setOpcion ] = useState('');
 
     return (
-        <View style={ localStyles.container } >
+        <View style={[ localStyles.container, style ]} >
             {
                 opciones.map((element, i) => {
                     
@@ -25,7 +27,8 @@ export const BotonSelect = ( { opciones, setState, widthBoton, onPressArray }: P
                             style={[
                                 localStyles.boton,
                                 { width: widthBoton },
-                                (opcion === element) && { backgroundColor: 'lightblue' }
+                                (opcion === element) && { backgroundColor: 'lightblue' },
+                                styleBoton
                             ]}
                             onPress={() => {
                                 setOpcion(element);

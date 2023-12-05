@@ -7,17 +7,20 @@ import { colors } from '../theme/appTheme';
 interface Props {
     iconName: string;
     placeHolder: string;
-    action: ( termino: string ) => void;
     color?: string;
     colorBoton?: string;
+
+    action: ( termino: string ) => void;
+    onCahgeText?: (text: string) => void;
 }
 
 export const InputBotonRight = ( { 
     action, 
+    onCahgeText,
     iconName, 
     placeHolder, 
     color = 'gray', 
-    colorBoton = colors.secundario 
+    colorBoton = colors.secundario
 }: Props ) => {
     const [ text, setText ] = useState('');
 
@@ -28,7 +31,10 @@ export const InputBotonRight = ( {
             <TextInput 
                 style={[ localStyles.input, { borderColor: color } ]}
                 placeholder={placeHolder}
-                onChangeText={(text) => setText(text)}
+                onChangeText={(text) => {
+                    setText(text);
+                    (onCahgeText) && onCahgeText(text);
+                }}
             />
             <TouchableOpacity
                 style={[ localStyles.botonContainer, { backgroundColor: colorBoton } ]}

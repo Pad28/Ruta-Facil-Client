@@ -1,21 +1,20 @@
 import React, { useContext } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { HomeTabNavigator } from './HomeTabNavigator';
 import { colors } from '../theme/appTheme';
 import { HeaderDrawer } from '../components/HeaderDrawer';
-import { DrawerMenuIntems } from '../components/DrawerMenuIntems';
 import { AuthContext } from '../context/auhtContext/AuthContext';
+import { AdminScreen } from '../screens/AdminScreen';
 import { ConfiguracionScreen } from '../screens/ConfiguracionScreen';
-import { NotificacionesScreen } from '../screens/NotificacionesScreen';
+import { DrawerMenuIntemsAdmin } from '../components/DrawerMenuIntemsAdmin';
+import { TabAdmin } from './TabAdmin';
 
-export type DrawerNavigationParams = {
-    HomeTabNavigator: undefined;
+export type DrawerAdminProps = {
+    TabAdmin: undefined;
     ConfiguracionScreen: undefined;
-    NotificacionesScreen: undefined;
-}
+} 
 
-const Drawer = createDrawerNavigator<DrawerNavigationParams>();
-export const DrawerMenu = () => {
+const Drawer = createDrawerNavigator<DrawerAdminProps>();
+export const DrawerAdmin = () => {
     const { authState } = useContext(AuthContext);
     let userName: string;
     if(authState.isloggedIn && authState.userAuthenticated ) {
@@ -26,8 +25,6 @@ export const DrawerMenu = () => {
     return (
         <Drawer.Navigator
             screenOptions={{
-                // swipeEnabled: false,
-
                 swipeEdgeWidth: 100,
                 drawerStyle: {
                     backgroundColor: colors.primario
@@ -38,15 +35,14 @@ export const DrawerMenu = () => {
                 title: '',
             }}
             drawerContent={(props) => (
-                <DrawerMenuIntems 
+                <DrawerMenuIntemsAdmin 
                     drawerProps={props} 
                     userName={`${userName}`} 
                 />
             )}
         >   
-            <Drawer.Screen name='HomeTabNavigator' component={HomeTabNavigator} />
+            <Drawer.Screen name='TabAdmin' component={TabAdmin} />
             <Drawer.Screen name='ConfiguracionScreen' component={ConfiguracionScreen} />
-            <Drawer.Screen name='NotificacionesScreen' component={NotificacionesScreen} />
         </Drawer.Navigator>
     );
 }

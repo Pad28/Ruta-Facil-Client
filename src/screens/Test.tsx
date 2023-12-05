@@ -1,39 +1,51 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Button, Text, View } from 'react-native';
-import { useForm, usePeticionPost } from '../hooks';
-
-type formToken = {
-    token: string;
-}
+import { useBusquedas } from '../hooks/useBusquedas';
+import { RutasResponse } from '../interfaces';
+import { AuthContext } from '../context/auhtContext/AuthContext';
+import { HorariosResponse } from '../interfaces/HorariosResponse';
 
 export const Test = () => {
-    const { form, onChange } = useForm<formToken>({} as formToken );
-    console.log(form);
-    
-    const { peticion } = usePeticionPost('/api/auth/validar-token', {}, { headers: { 'api-key': form.token } });
+    const { logIn } = useContext(AuthContext);
+
+    const { 
+        busqueda,
+        results,
+        termino,
+        setTermino
+    } = useBusquedas<HorariosResponse>(35, 'Horario');    
+
+    useEffect(() => {
+        logIn({
+            "user": {
+                "id": "ba0120e6-5fbe-42ed-8cb0-0b3963e796b1",
+                "correo": "admin@test.com",
+                "nombre": "Admin",
+                "apellidos": "Apellido",
+                "password": "$2a$15$k4pie2wluLYjEBxfMeeV3OYTSyOvnEey/T2VnvRzYOM.VPKvdDwE.",
+                "telefono": "7971239199",
+                "foto": "default_user.png",
+                "estado": true,
+                "rol": "ADMIN"
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJhMDEyMGU2LTVmYmUtNDJlZC04Y2IwLTBiMzk2M2U3OTZiMSIsImlhdCI6MTcwMTU2NzI2NSwiZXhwIjoxNzAxNTgxNjY1fQ.vji4WVgFbOF5b2gpD--OfRQSOTGfGL3Ynd-mu_7vKdw"
+        })
+    }, []);
 
     return (
         <View style={{ marginTop: 50 }} >
             <Text>TestScreen</Text>
             <Button 
-                title='token'
+                title='press'
                 onPress={() => {
-                    onChange(
-                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5MmU3NTJiLTM4MWUtNDIzNS1hNGU0LTlkYmQ3YjQ3NTNhZiIsImlhdCI6MTcwMTE1Mzc4NCwiZXhwIjoxNzAxMTUzNzg0fQ.3OHkcXnsSB_QNC6JizoZgR3PAAhLVRccK_fHF-aW9gc',
-                        'token'
-                    );
-                    console.log( form );
+                    busqueda();
                 }}
             />
-
-            <Button 
-                title='Peticion' 
-                onPress={() => {
-                    peticion({})
-                        .then(res => console.log(res))
-                        .catch(err => console.log(err.message))
-                }}
-            />
+            <Text>
+                {
+                    JSON.stringify(results.horarios, null, 4)
+                }
+            </Text>
         </View>
     );
 }
