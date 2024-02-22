@@ -29,7 +29,6 @@ export const LoginScreen = ({ navigation }: Props) => {
                     <View style={ styles.container } >
                         <HeaderText height={100} />
                         <View style={{ ...styles.body, paddingTop: 30 }} >
-                            
                             <Image 
                                 source={ require('../../assets/LogoRutaFacil.png') } 
                                 style={ localStyles.logo }
@@ -60,7 +59,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 const localStyles = StyleSheet.create({
     logo: {
         height: (heightWindow > 850) ? 330 : 250,
-        width:  (heightWindow > 850) ? 330 : 250,
+        width:  (heightWindow > 850) ? 600 : 400,
         marginBottom: 20,
     },
 });

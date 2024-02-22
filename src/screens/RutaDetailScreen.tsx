@@ -6,13 +6,14 @@ import { StackRutasParams } from '../navigaton/StackRutasNavigator';
 import { HeaderRutaDetail } from '../components/HeaderRutaDetail';
 import { AuthContext } from '../context/auhtContext/AuthContext';
 import { BotonTarget } from '../components/BotonTarget';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
+import MapViewDirections from 'react-native-maps-directions';
 
 interface Props extends StackScreenProps<StackRutasParams, 'RutaDetailScreen'> {}
 
 export const RutaDetailScreen = ( { navigation, route }: Props ) => {
     const { authState } = useContext(AuthContext);
-    const { destino, origen, id, estado, numero } = route.params;
+    const { ...ruta } = route.params;
 
     return (
         <View
@@ -21,7 +22,7 @@ export const RutaDetailScreen = ( { navigation, route }: Props ) => {
             ]}
         >
             <HeaderRutaDetail 
-                title={`${origen} - ${destino}`}
+                title={`${ruta.origen} - ${ruta.destino}`}
                 onPressNavigate={navigation.pop}
             />
             <View 
@@ -30,12 +31,40 @@ export const RutaDetailScreen = ( { navigation, route }: Props ) => {
                 <MapView 
                     style={{ height: '100%', width:'100%' }}
                     initialRegion={{
-                        latitude: 20.1351,
-                        longitude: -98.3792,
+                        latitude: parseFloat(ruta.latitudOrigen!), 
+                        longitude: parseFloat(ruta.longitudOrigen!), 
                         latitudeDelta: 0.09,
                         longitudeDelta: 0.04
                     }}
-                />
+                >
+                    <Marker 
+                        coordinate={{ 
+                            latitude: parseFloat(ruta.latitudOrigen!), 
+                            longitude: parseFloat(ruta.longitudOrigen!) 
+                        }}
+                    />
+                    <Marker 
+                        coordinate={{ 
+                            latitude: parseFloat(ruta.latitudDestino!), 
+                            longitude: parseFloat(ruta.longitudDestino!) 
+                        }}
+                    />
+
+                    <MapViewDirections 
+                        origin={{
+                            latitude: parseFloat(ruta.latitudOrigen!),
+                            longitude: parseFloat(ruta.longitudOrigen!)
+                        }}
+                        destination={{
+                            latitude: parseFloat(ruta.latitudDestino!), 
+                            longitude: parseFloat(ruta.longitudDestino!)
+                        }}
+                        apikey={process.env.EXPO_PUBLIC_GOOGLE_MAPS_KEY || ''}
+                        strokeColor='blue'
+                        strokeWidth={6}
+                    />
+
+                </MapView>
 
             </View>
 
@@ -45,7 +74,7 @@ export const RutaDetailScreen = ( { navigation, route }: Props ) => {
                     iconName='time'
                     width={350}
                     heigth={60}
-                    action={() => navigation.navigate('HorariosScreen', { id, estado, numero, destino, origen })}
+                    action={() => navigation.navigate('HorariosScreen', ruta)}
                 />
             </View>
         </View>
@@ -63,6 +92,7 @@ const localStyles = StyleSheet.create({
         width: 350,
         marginTop: 10,
         borderRadius: 10,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        alignSelf: 'center'
     }
 });

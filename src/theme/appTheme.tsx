@@ -2,9 +2,9 @@ import { Dimensions, StyleSheet } from "react-native";
 const { height: heightWindow, width: widthWindow } = Dimensions.get('window');
 
 const colors = {
-    primario: '#67C8D1', // azulito 
-    secundario: '#FBB90F', // amarillo
-    terciario: '#4FA264', // verde 
+    primario: '#17536C', // azulito 
+    secundario: '#A7B638', // verdicito
+    terciario: '#F8B717', // verde 
 
     fondo: '#EFEFEF'
 }

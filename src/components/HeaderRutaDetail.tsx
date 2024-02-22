@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { colors } from '../theme/appTheme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 interface Props {
     title: string;
@@ -21,6 +22,10 @@ export const HeaderRutaDetail = ( { title, onPressNavigate }: Props ) => {
                     flexDirection: 'row',
                 }}
             >   
+                <StatusBar 
+                    style='light'
+                    backgroundColor={ colors.primario }
+                />
                 <TouchableOpacity
                     style={{
                         marginLeft: 10
