@@ -58,9 +58,12 @@ export const LoginScreen = ({ navigation }: Props) => {
 
 const localStyles = StyleSheet.create({
     logo: {
-        height: (heightWindow > 850) ? 330 : 250,
-        width:  (heightWindow > 850) ? 600 : 400,
-        marginBottom: 20,
+        marginTop: 10,
+        // height: (heightWindow > 850) ? 330 : 250,
+        // width:  (heightWindow > 850) ? 600 : 400,
+        height: 300,
+        width: 300,
+        // marginBottom: 20,
     },
 });
 

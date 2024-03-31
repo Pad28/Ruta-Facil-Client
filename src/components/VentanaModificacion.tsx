@@ -51,7 +51,7 @@ export const VentanaModificacion = ( { visible, setVisible, action, placeholder 
 
                         {/* // Cancelar */}
                         <TouchableOpacity
-                            style={ localStyles.boton }
+                            style={[ localStyles.boton, { backgroundColor: 'red' } ]}
                             onPress={() => {
                                 (setVisible) && setVisible(false);
                                 (setStateType) && setStateType('');

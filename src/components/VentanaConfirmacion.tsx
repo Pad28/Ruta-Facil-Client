@@ -25,20 +25,20 @@ export const VentanaConfirmacion = ( { texto, width = 220, action, setVisible, v
                 <Text style={[ localStyles.textoStyle, {marginBottom: 24} ]} > { texto } </Text>
                 <View style={{ flexDirection: 'row' }} >
 
-                    {/* Aceptar */}
-                    <TouchableOpacity
-                        style={[ localStyles.boton, { marginRight: 20 } ]}
-                        onPress={action}
-                    >
-                        <Text style={[ localStyles.textoStyle, { color: 'white' } ]} >Aceptar</Text>
-                    </TouchableOpacity>
-
                     {/* // Cancelar */}
                     <TouchableOpacity
-                        style={ localStyles.boton }
+                        style={[ localStyles.boton, { backgroundColor: 'red', marginRight: 20 } ]}
                         onPress={() => setVisible(false)}
                     >
                         <Text style={[ localStyles.textoStyle, { color: 'white' } ]} >Cancelar</Text>
+                    </TouchableOpacity>
+
+                    {/* Aceptar */}
+                    <TouchableOpacity
+                        style={[ localStyles.boton]}
+                        onPress={action}
+                    >
+                        <Text style={[ localStyles.textoStyle, { color: 'white' } ]} >Aceptar</Text>
                     </TouchableOpacity>
                 </View>
 

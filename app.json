@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "RutaFacil",
-    "slug": "RutaFacil",
+    "slug": "rutafacil",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -40,8 +40,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "bf88b033-6dec-4e8e-b088-55878f386ed2"
+        "projectId": "f9220259-54b1-448a-a479-86dc33026f65"
       }
-    }
+    },
+    "owner": "mipape281003"
   }
 }

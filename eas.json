@@ -8,6 +8,9 @@
       "distribution": "internal"
     },
     "preview": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://2c76-74-208-110-170.ngrok-free.app"
+      },
       "distribution": "internal"
     },
     "production": {}
